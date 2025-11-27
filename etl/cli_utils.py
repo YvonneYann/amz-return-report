@@ -1,8 +1,8 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 import json
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
@@ -67,7 +67,8 @@ def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, date, dat
     resolved_window_days = args.window_days or _coerce_int(params.get("window_days")) or config.default_window_days
     args.window_days = resolved_window_days
 
-    biz_date_value = args.biz_date or params.get("biz_date") or date.today()
+    default_biz_date = date.today() - timedelta(days=1)
+    biz_date_value = args.biz_date or params.get("biz_date") or default_biz_date
     start_override = args.start_date or params.get("start_date")
     end_override = args.end_date or params.get("end_date")
 
@@ -82,3 +83,4 @@ def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, date, dat
 
 def format_window(start_date: date, end_date: date) -> Tuple[str, str]:
     return format_date(start_date), format_date(end_date)
+

@@ -1,8 +1,9 @@
-﻿{
+{
   "country": "US",
   "fasin": "B0BGHGXYJX",
   "window_days": 180,
-  "biz_date": null,
+  "biz_date": "yesterday",
   "start_date": null,
   "end_date": null
 }
+

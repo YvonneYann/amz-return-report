@@ -4,31 +4,31 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
-      "start_date": "2025-06-01",
-      "end_date": "2025-11-27",
+      "start_date": "2025-05-31",
+      "end_date": "2025-11-26",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
       "total_events": 45,
-      "units_returned": 530,
-      "text_coverage": 0.084906,
+      "units_returned": 535,
+      "text_coverage": 0.0841,
       "core_reasons": [
         {
           "tag_code": "NO_MATCH",
           "tag_name_cn": "无合适标签",
           "event_count": 22,
-          "event_coverage": 0.488889,
+          "event_coverage": 0.4889,
           "is_primary": true
         },
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
           "event_count": 15,
-          "event_coverage": 0.333333,
+          "event_coverage": 0.3333,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.822222,
+      "coverage_reached": 0.8222,
       "reason_confidence_level": "medium",
       "can_deep_dive_reasons": true
     },
@@ -36,13 +36,13 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
-      "start_date": "2025-06-01",
-      "end_date": "2025-11-27",
+      "start_date": "2025-05-31",
+      "end_date": "2025-11-26",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
       "total_events": 20,
-      "units_returned": 229,
-      "text_coverage": 0.087336,
+      "units_returned": 230,
+      "text_coverage": 0.087,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
@@ -75,13 +75,13 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHJG2NJ",
-      "start_date": "2025-06-01",
-      "end_date": "2025-11-27",
+      "start_date": "2025-05-31",
+      "end_date": "2025-11-26",
       "problem_class": "B",
       "problem_class_label_cn": "高退货问题款",
       "total_events": 2,
       "units_returned": 94,
-      "text_coverage": 0.021277,
+      "text_coverage": 0.0213,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",

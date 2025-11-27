@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from datetime import date, datetime, timedelta
 from typing import List, Tuple, Union
@@ -16,6 +16,11 @@ def parse_date(value: DateInput) -> date:
     value = value.strip()
     if not value:
         raise ValueError("Empty date string")
+    lowered = value.lower()
+    if lowered == "today":
+        return date.today()
+    if lowered == "yesterday":
+        return date.today() - timedelta(days=1)
     if "T" in value:
         try:
             return datetime.fromisoformat(value).date()
@@ -66,7 +71,7 @@ def calc_rate(numerator: float, denominator: float) -> float:
     return safe_divide(numerator, denominator, 0.0)
 
 
-def round_float(value: float, digits: int = 6) -> float:
+def round_float(value: float, digits: int = 4) -> float:
     return round(float(value), ndigits=digits)
 
 
