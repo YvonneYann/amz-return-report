@@ -542,7 +542,7 @@
 
 ## 5. ETL 流程
 
-```text
+```	text
 etl/
 ├── config.py             # 全局配置（DB、阈值、运行参数等）
 ├── calculator.py         # 公共工具函数（日期处理、安全除法、coverage 计算等）
@@ -550,40 +550,44 @@ etl/
 ├── parent_summary.py     # 4.1 父体整体指标计算逻辑
 ├── asin_structure.py     # 4.2 子 ASIN 结构 & problem_class 判定
 ├── problem_reasons.py    # 4.3 问题 ASIN 核心原因拆解
-├── pipeline.py           # ETL 编排入口（串联 4.1/4.2/4.3 并写回 Doris）
-└── requirements.txt      # Python 依赖列表
+├── run_parent_summary.py # 单独运行 4.1 的 CLI
+├── run_asin_structure.py # 单独运行 4.2 的 CLI
+├── run_problem_reasons.py# 单独运行 4.3 的 CLI
+├── cli_utils.py          # CLI 参数解析 & 时间窗口计算
+└── pipeline.py           # ETL 编排入口（串联 4.1/4.2/4.3 并写入模板目录）
+
+template/
+├── input/                # Doris 抽取的原始快照/事实缓存
+└── output/               # 4.1/4.2/4.3 JSON 结果（供下游消费）
+
+config/
+├── environment.yaml      # Doris 连接信息
+└── run_params.json       # 默认运行参数（country/fasin/window_days 等）
+
+requirements.txt          # Python 依赖列表
 ```
 
-1. **Extract**（抽取）：
+1. **Extract（抽取）**：
 
-   - 从 Doris 读取第 3 章定义的视图 / 表：
-     - `view_return_snapshot`
-     - `view_return_fact_details`
-     - `return_dim_tag`
+   - 直接从 Doris 读取 `view_return_snapshot`、`view_return_fact_details`、
+`return_dim_tag`，并将源数据缓存到 `template/input/`，方便追溯/复盘。
 
 2. **Transform（Python 计算）**：
 
-   - 将核心计算逻辑拆分为三个独立的 Python 模块：
-     - `4.1` → `parent_summary.py`（父体整体指标计算）
-     - `4.2` → `asin_structure.py`（子 ASIN 结构与问题 ASIN 识别）
-     - `4.3` → `problem_reasons.py`（问题 ASIN 核心原因拆解）
-   - 所有阈值、开关与运行参数统一在 `config.py` 中配置；
-   - 日期处理、安全除零、覆盖率计算等通用工具函数统一收敛在 `calculator.py` 中复用。
+   - 4.1/4.2/4.3 拆分为 `parent_summary.py`、`asin_structure.py`、`problem_reasons.py`；
+   - 所有阈值、日期窗口、公共函数分别集中在 `config.py`、`cli_utils.py`、`calculator.py`；
+   - 阶段性 CLI（`run_parent_summary.py`, `run_asin_structure.py`, `run_problem_reasons.py`）与 `pipeline.py` 共享同一套运行逻辑。
 
-3. **Load**（入库）：
+3. **Load（输出）**：
 
-   - 将 4.1、4.2、4.3 的 **JSON 结果**写回 Doris：
-     - 每个模块对应一张结果表，方便下游 BI / 应用端直接消费；
-     - 采用主键覆盖写入（如 `REPLACE INTO` 或 `INSERT ... ON DUPLICATE KEY UPDATE`），保证同一 `(country, fasin, start_date, end_date)` 可幂等重跑。
+   - 将 4.1/4.2/4.3 的 JSON 结果统一写入 `template/output/`，供 BI / 报告模块直接消费；
+   - 若需要写回 Doris，可由下游读取 JSON 后自行执行 `REPLACE INTO / INSERT ... ON DUPLICATE KEY UPDATE`，确保 (`country`, `fasin`, `start_date`, `end_date`) 幂等。
 
 4. **Pipeline 编排**：
 
-   - 通过 `pipeline.py` 串联上述所有步骤，形成可调度的批处理作业：
-     - 解析外部传入参数（如 `country`、`fasin`、`biz_date`、`window_days` 等）；
-     - 调用 `calculator.py` 计算本次任务的分析时间窗口（`start_date`、`end_date`）；
-     - 按顺序调用 `parent_summary.py`、`asin_structure.py`、`problem_reasons.py` 完成各阶段计算；
-     - 将各阶段输出 JSON 统一写回 Doris 对应结果表；
-     - 预留日志记录、告警与简单监控能力，方便后续接入 Airflow / Shell Cron 等调度系统。
+   - `config/run_params.json` 维护默认参数，`python -m etl.run_*` 可独立触发每个模块，`python -m etl.pipeline` 可一次性串联；
+   - CLI 可额外传入 `--country`, `--fasin`, `--window-days`, `--biz-date` 等，按需覆盖默认值；
+   - 执行顺序为：解析参数 → 计算窗口 → 依次运行 4.1/4.2/4.3 → 写入 	`template/input/`/`template/output/` 并输出日志，可方便集成到 Airflow / Cron 等调度系统。
 
 ---
 

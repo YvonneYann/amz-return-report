@@ -1,0 +1,95 @@
+{
+  "problem_asin_reasons": [
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "start_date": "2025-08-30",
+      "end_date": "2025-11-27",
+      "problem_class": "A",
+      "problem_class_label_cn": "主战场款",
+      "total_events": 23,
+      "units_returned": 251,
+      "text_coverage": 0.091633,
+      "core_reasons": [
+        {
+          "tag_code": "NO_MATCH",
+          "tag_name_cn": "无合适标签",
+          "event_count": 14,
+          "event_coverage": 0.608696,
+          "is_primary": true
+        },
+        {
+          "tag_code": "FIT_COMPAT",
+          "tag_name_cn": "尺寸/兼容性不符",
+          "event_count": 6,
+          "event_coverage": 0.26087,
+          "is_primary": false
+        }
+      ],
+      "coverage_threshold": 0.8,
+      "coverage_reached": 0.869565,
+      "reason_confidence_level": "medium",
+      "can_deep_dive_reasons": true
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0D4QLYM4C",
+      "start_date": "2025-08-30",
+      "end_date": "2025-11-27",
+      "problem_class": "A",
+      "problem_class_label_cn": "主战场款",
+      "total_events": 3,
+      "units_returned": 91,
+      "text_coverage": 0.032967,
+      "core_reasons": [
+        {
+          "tag_code": "FIT_COMPAT",
+          "tag_name_cn": "尺寸/兼容性不符",
+          "event_count": 2,
+          "event_coverage": 0.666667,
+          "is_primary": true
+        }
+      ],
+      "coverage_threshold": 0.8,
+      "coverage_reached": 0.666667,
+      "reason_confidence_level": "low",
+      "can_deep_dive_reasons": false
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0D9BMW8FV",
+      "start_date": "2025-08-30",
+      "end_date": "2025-11-27",
+      "problem_class": "B",
+      "problem_class_label_cn": "高退货问题款",
+      "total_events": 0,
+      "units_returned": 45,
+      "text_coverage": 0.0,
+      "core_reasons": [],
+      "coverage_threshold": 0.8,
+      "coverage_reached": 0.0,
+      "reason_confidence_level": "low",
+      "can_deep_dive_reasons": false
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHJG2NJ",
+      "start_date": "2025-08-30",
+      "end_date": "2025-11-27",
+      "problem_class": "B",
+      "problem_class_label_cn": "高退货问题款",
+      "total_events": 0,
+      "units_returned": 42,
+      "text_coverage": 0.0,
+      "core_reasons": [],
+      "coverage_threshold": 0.8,
+      "coverage_reached": 0.0,
+      "reason_confidence_level": "low",
+      "can_deep_dive_reasons": false
+    }
+  ]
+}

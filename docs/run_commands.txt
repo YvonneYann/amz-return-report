@@ -1,0 +1,27 @@
+﻿REM Step 0: 进入项目目录
+cd C:\Users\MOREFINE\Desktop\amz-return-report
+
+REM Step 0.2: 激活虚拟环境（首次需先执行 `python -m venv .venv` 创建）
+.venv\Scripts\activate.bat
+
+REM Step 0.3: 安装依赖（首次部署或依赖更新时执行）
+pip install -r requirements.txt
+
+REM Step 0.5: 配置运行参数（编辑 config\run_params.json，设置默认 country/fasin/window_days 等）
+REM   示例：{"country": "US", "fasin": "B0BGHGXYJX", "window_days": 90}
+
+REM Step 1: 父体整体指标（输入：view_return_snapshot；输出：template/output/parent_summary.json）
+python -m etl.run_parent_summary
+
+REM Step 2: 子 ASIN 结构 & 问题款识别（输入：Step1 快照结果；输出：template/output/asin_structure.json）
+python -m etl.run_asin_structure
+
+REM Step 3: 问题 ASIN 核心原因（输入：Step2 结构 + 退货留言标签；输出：template/output/problem_asin_reasons.json）
+python -m etl.run_problem_reasons
+
+REM Step ALL: 一次性串行跑完全部阶段
+python -m etl.pipeline
+
+REM 说明：如需临时覆盖参数，可在命令后追加 --country/--fasin/--window-days/--biz-date，
+REM 或通过 --params-file 指向其他 JSON。所有命令需使用 `python -m etl.xxx` 形式，
+REM 以保证包内相对导入生效。
