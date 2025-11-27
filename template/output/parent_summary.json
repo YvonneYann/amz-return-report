@@ -2,10 +2,10 @@
   "parent_summary": {
     "country": "US",
     "fasin": "B0BGHGXYJX",
-    "start_date": "2025-08-29",
+    "start_date": "2025-06-01",
     "end_date": "2025-11-27",
-    "units_sold": 4675,
-    "units_returned": 535,
-    "return_rate": 0.114439
+    "units_sold": 10534,
+    "units_returned": 1144,
+    "return_rate": 0.108601
   }
 }

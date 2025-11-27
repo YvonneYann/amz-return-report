@@ -15,7 +15,3 @@ python -m etl.run_problem_reasons
 
 REM Step ALL: 一次性串行跑完全部阶段
 python -m etl.pipeline
-
-REM 说明：如需临时覆盖参数，可在命令后追加 --country/--fasin/--window-days/--biz-date，
-REM 或通过 --params-file 指向其他 JSON。所有命令需使用 `python -m etl.xxx` 形式，
-REM 以保证包内相对导入生效。
