@@ -1,14 +1,8 @@
 ﻿REM Step 0: 进入项目目录
 cd C:\Users\MOREFINE\Desktop\amz-return-report
 
-REM Step 0.2: 激活虚拟环境（首次需先执行 `python -m venv .venv` 创建）
-.venv\Scripts\activate.bat
-
-REM Step 0.3: 安装依赖（首次部署或依赖更新时执行）
-pip install -r requirements.txt
-
 REM Step 0.5: 配置运行参数（编辑 config\run_params.json，设置默认 country/fasin/window_days 等）
-REM   示例：{"country": "US", "fasin": "B0BGHGXYJX", "window_days": 90}
+REM   示例：{"country": "US", "fasin": "B0BGHGXYJX", "window_days": 91}
 
 REM Step 1: 父体整体指标（输入：view_return_snapshot；输出：template/output/parent_summary.json）
 python -m etl.run_parent_summary
