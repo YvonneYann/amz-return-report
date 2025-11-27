@@ -1,5 +1,4 @@
 -- AMZ 退货分析 --
--- DROP VIEW hyy.view_return_fact_details
 -- CREATE OR REPLACE VIEW hyy.view_return_fact_details as 
 with raw as
 (select country_name country,fasin,asin,STR_TO_DATE(review_date,'%Y-%m-%d') review_date,
@@ -18,6 +17,6 @@ where customer_comments <> '')
 select country,fasin,asin,review_date,fact.* 
 from hyy.return_fact_details fact
 left join raw on raw.review_id = fact.review_id
-where review_date >= CURDATE() -interval 90 day
-and country = 'US' and fasin = 'B0BGHGXYJX'
-order by review_date desc;
+where review_date >= CURDATE() -interval 180 day;
+-- and country = 'US' and fasin = 'B0BGHGXYJX'
+-- order by review_date desc;
