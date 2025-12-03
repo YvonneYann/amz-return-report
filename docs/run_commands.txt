@@ -2,7 +2,7 @@
 cd C:\Users\MOREFINE\Desktop\amz-return-report
 
 REM Step 0.5: 配置运行参数（编辑 config\run_params.json，设置默认 country/fasin/window_days 等）
-REM   示例：{"country": "US", "fasin": "B0BGHGXYJX", "window_days": 91}
+REM   示例：{"country": "US", "fasin": "B0BGHGXYJX", "window_days": 90}
 
 REM Step 1: 父体整体指标（输入：view_return_snapshot；输出：template/output/parent_summary.json）
 python -m etl.run_parent_summary
