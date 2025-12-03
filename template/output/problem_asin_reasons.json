@@ -52,15 +52,15 @@
           "is_primary": true
         },
         {
-          "tag_code": "NO_MATCH",
-          "tag_name_cn": "无合适标签",
+          "tag_code": "VALUE_WEAK",
+          "tag_name_cn": "性价比差/不值这个价",
           "event_count": 2,
           "event_coverage": 0.1053,
           "is_primary": false
         },
         {
-          "tag_code": "VALUE_WEAK",
-          "tag_name_cn": "性价比差/不值这个价",
+          "tag_code": "NO_MATCH",
+          "tag_name_cn": "无合适标签",
           "event_count": 2,
           "event_coverage": 0.1053,
           "is_primary": false

@@ -9,6 +9,7 @@ from .cli_utils import build_stage_parser, format_window, resolve_runtime
 from .doris_client import DorisClient
 from .parent_summary import calculate_parent_summary
 from .problem_reasons import build_problem_reasons
+from .reason_explanations import build_reason_explanations
 
 LOGGER = logging.getLogger("etl.pipeline")
 
@@ -81,11 +82,17 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
             end_date=end_date,
         )
         LOGGER.info("Computed %d problem ASIN reason rows", len(problem_reasons))
+        reason_explanations = build_reason_explanations(
+            problem_reasons=problem_reasons,
+            fact_rows=fact_rows,
+        )
+        LOGGER.info("Filtered %d reason explanation rows", len(reason_explanations))
 
         outputs = {
             "parent_summary": parent_summary,
             "asin_structure": asin_structure,
             "problem_asin_reasons": problem_reasons,
+            "reason_explanations": reason_explanations,
         }
         for table_name, payload in outputs.items():
             output_path = client.write_json(table_name, payload)

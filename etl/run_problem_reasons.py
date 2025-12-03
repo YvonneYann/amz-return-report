@@ -8,6 +8,7 @@ from .cli_utils import build_stage_parser, format_window, resolve_runtime
 from .doris_client import DorisClient
 from .parent_summary import calculate_parent_summary
 from .problem_reasons import build_problem_reasons
+from .reason_explanations import build_reason_explanations
 
 LOGGER = logging.getLogger("etl.run_problem_reasons")
 
@@ -65,6 +66,12 @@ def run(args=None) -> List[Dict[str, object]]:
         )
         output_path = client.write_json("problem_asin_reasons", problem_reasons)
         LOGGER.info("problem_asin_reasons written to %s", output_path)
+        reason_explanations = build_reason_explanations(
+            problem_reasons=problem_reasons,
+            fact_rows=fact_rows,
+        )
+        reason_path = client.write_json("reason_explanations", reason_explanations)
+        LOGGER.info("reason_explanations written to %s", reason_path)
     return problem_reasons
 
 
