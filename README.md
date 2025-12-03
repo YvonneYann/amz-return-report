@@ -485,7 +485,7 @@
         - 默认规则：从排序第一的标签开始，按 `event_coverage_tag_asin` 累加，直到累计覆盖率 ≥ `COVERAGE_THRESHOLD`（0.8，默认值），中途至少保留 1 个标签，最多保留 3 个标签；
         - 实际系统中通过配置项控制，便于不同品类/业务方对“核心原因”的口径调整。
       - 对于 `can_deep_dive_reasons = false` 的 ASIN：
-        - 可以仅按 `event_count_tag_asin` 输出 Top1 标签作为“主诉问题”参考，不强制进行覆盖率累计与多标签核心原因集合选择。
+        - 可以仅按 `event_count_tag_asin` 输出 Top2 标签作为“主诉问题”参考，不强制进行覆盖率累计与多标签核心原因集合选择。
 
 #### 输出
 

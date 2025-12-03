@@ -74,6 +74,8 @@ def _select_core_reasons(
     ordered_tags = sorted(tag_counter.items(), key=lambda item: len(item[1]), reverse=True)
     selected: List[Dict] = []
     cumulative = 0.0
+    # For low-confidence ASINs we only surface the top 2 tags as reference issues.
+    max_reasons = 2 if not can_deep_dive else thresholds.max_core_reasons
     for idx, (tag_code, review_ids) in enumerate(ordered_tags):
         event_count = len(review_ids)
         if event_count == 0:
@@ -89,8 +91,10 @@ def _select_core_reasons(
         selected.append(reason)
         cumulative += coverage
         if not can_deep_dive:
-            break
-        if len(selected) >= thresholds.max_core_reasons:
+            if len(selected) >= max_reasons:
+                break
+            continue
+        if len(selected) >= max_reasons:
             break
         if cumulative >= thresholds.coverage_threshold and len(selected) >= thresholds.min_core_reasons:
             break
