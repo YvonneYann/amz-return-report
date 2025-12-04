@@ -4,38 +4,38 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
-      "start_date": "2025-06-07",
+      "start_date": "2025-09-05",
       "end_date": "2025-12-03",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 164,
-      "units_returned": 535,
-      "text_coverage": 0.3065,
+      "total_events": 174,
+      "units_returned": 253,
+      "text_coverage": 0.6877,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 73,
-          "event_coverage": 0.4451,
+          "event_count": 81,
+          "event_coverage": 0.4655,
           "is_primary": true
         },
         {
           "tag_code": "NO_MATCH",
           "tag_name_cn": "无合适标签",
-          "event_count": 51,
-          "event_coverage": 0.311,
+          "event_count": 49,
+          "event_coverage": 0.2816,
           "is_primary": false
         },
         {
           "tag_code": "DOA_DAMAGED",
           "tag_name_cn": "损坏到货（DOA/受损）",
           "event_count": 13,
-          "event_coverage": 0.0793,
+          "event_coverage": 0.0747,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8354,
+      "coverage_reached": 0.8218,
       "reason_confidence_level": "high",
       "can_deep_dive_reasons": true
     },
@@ -43,38 +43,38 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
-      "start_date": "2025-06-07",
+      "start_date": "2025-09-05",
       "end_date": "2025-12-03",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 43,
-      "units_returned": 224,
-      "text_coverage": 0.192,
+      "total_events": 40,
+      "units_returned": 80,
+      "text_coverage": 0.5,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
           "event_count": 27,
-          "event_coverage": 0.6279,
+          "event_coverage": 0.675,
           "is_primary": true
         },
         {
           "tag_code": "PAGE_MISSING",
           "tag_name_cn": "页面信息/选型指引不清",
-          "event_count": 5,
-          "event_coverage": 0.1163,
+          "event_count": 4,
+          "event_coverage": 0.1,
           "is_primary": false
         },
         {
-          "tag_code": "NO_MATCH",
-          "tag_name_cn": "无合适标签",
-          "event_count": 4,
-          "event_coverage": 0.093,
+          "tag_code": "STABILITY_TIP",
+          "tag_name_cn": "整体稳定性差/易晃动",
+          "event_count": 3,
+          "event_coverage": 0.075,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8372,
+      "coverage_reached": 0.85,
       "reason_confidence_level": "high",
       "can_deep_dive_reasons": true
     },
@@ -82,31 +82,31 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHJG2NJ",
-      "start_date": "2025-06-07",
+      "start_date": "2025-09-05",
       "end_date": "2025-12-03",
       "problem_class": "B",
       "problem_class_label_cn": "高退货问题款",
-      "total_events": 21,
-      "units_returned": 93,
-      "text_coverage": 0.2258,
+      "total_events": 23,
+      "units_returned": 45,
+      "text_coverage": 0.5111,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 11,
-          "event_coverage": 0.5238,
+          "event_count": 12,
+          "event_coverage": 0.5217,
           "is_primary": true
         },
         {
           "tag_code": "NO_MATCH",
           "tag_name_cn": "无合适标签",
-          "event_count": 7,
-          "event_coverage": 0.3333,
+          "event_count": 8,
+          "event_coverage": 0.3478,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8571,
+      "coverage_reached": 0.8696,
       "reason_confidence_level": "medium",
       "can_deep_dive_reasons": true
     }
