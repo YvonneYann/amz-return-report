@@ -35,7 +35,7 @@ def _filter_fact_rows(
             continue
         if row.get("fasin") != fasin:
             continue
-        if row.get("review_source") not in {0, "0"}:
+        if row.get("review_source") not in {0, 1, "0", "1"}:
             continue
         asin = row.get("asin")
         if asin not in asin_whitelist:

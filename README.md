@@ -453,7 +453,7 @@
 2. 在打标事实表 `view_return_fact_details` 中筛选：
    - `country = 输入.country`；
    - `fasin = 输入.fasin`；
-   - `review_source = 0`（仅退货留言）；
+   - `review_source ∈ {0, 1}`（退货留言 + 买家之声）；
    - `start_date ≤ review_date ≤ end_date`；
    - `asin ∈ problem_asin_list`。
 
@@ -468,7 +468,7 @@
 
    3. 样本置信度评估：
       - 为每个问题 ASIN 计算文本样本相关指标：
-        - `text_sample_count = N_events_asin`（该 ASIN 在当前站点 + 时间范围内的退货留言事件数）；
+        - `text_sample_count = N_events_asin`（该 ASIN 在当前站点 + 时间范围内的退货留言/买家之声事件数）；
         - 从 `asin_structure` 中获取该 ASIN 在同一站点 + 时间范围内的退货量：`units_returned_asin`；
         - `text_coverage = text_sample_count / units_returned_asin`（留言率，若分母为 0 则置为 0）。
       - 基于 `text_sample_count` 与 `text_coverage` 打标样本置信度等级：

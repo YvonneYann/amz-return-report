@@ -4,78 +4,6 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 19,
-      "units_returned": 2
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0F23C9KBX",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 1,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0DFL3K8FK",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 1,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0DFKWW9WY",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 3,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D736K3NQ",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 1,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D9BMW8FV",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 6,
-      "units_returned": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D731RTQH",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 1,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0CKHMG28Q",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 1,
-      "units_returned": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHJG2NJ",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 2,
-      "units_returned": 3
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
       "snapshot_date": "2025-06-07",
       "units_sold": 26,
       "units_returned": 2
@@ -341,38 +269,6 @@
       "fasin": "B0BGHGXYJX",
       "asin": "B0F23C9KBX",
       "snapshot_date": "2025-06-09",
-      "units_sold": 0,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 26,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0DR2V41P5",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 0,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0DBQDJKLQ",
-      "snapshot_date": "2025-06-06",
-      "units_sold": 0,
-      "units_returned": 0
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0DK71PWB3",
-      "snapshot_date": "2025-06-06",
       "units_sold": 0,
       "units_returned": 0
     },
@@ -18516,6 +18412,30 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0DFKWW9WY",
+      "snapshot_date": "2025-12-03",
+      "units_sold": 2,
+      "units_returned": 0
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0DFL3K8FK",
+      "snapshot_date": "2025-12-03",
+      "units_sold": 0,
+      "units_returned": 0
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHJG2NJ",
+      "snapshot_date": "2025-12-03",
+      "units_sold": 2,
+      "units_returned": 0
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0DFKWW9WY",
       "snapshot_date": "2025-12-01",
       "units_sold": 4,
       "units_returned": 0
@@ -18662,6 +18582,30 @@
       "asin": "B0DK71PWB3",
       "snapshot_date": "2025-12-02",
       "units_sold": 1,
+      "units_returned": 0
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0D4QLYM4C",
+      "snapshot_date": "2025-12-03",
+      "units_sold": 4,
+      "units_returned": 0
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0F23C9KBX",
+      "snapshot_date": "2025-12-03",
+      "units_sold": 2,
+      "units_returned": 0
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "snapshot_date": "2025-12-03",
+      "units_sold": 5,
       "units_returned": 0
     }
   ]

@@ -24,7 +24,7 @@ class DorisClient:
         "SELECT country, fasin, asin, review_id, review_source, review_date, tag_code, "
         "review_en, review_cn, sentiment, tag_name_cn, evidence, created_at, updated_at "
         "FROM view_return_fact_details "
-        "WHERE country = %s AND fasin = %s AND review_source = 0 "
+        "WHERE country = %s AND fasin = %s AND review_source IN (0, 1) "
         "AND review_date BETWEEN %s AND %s"
     )
     TAG_SQL = (
