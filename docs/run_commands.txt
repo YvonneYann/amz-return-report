@@ -5,13 +5,13 @@ REM Step 0.5: 配置运行参数（编辑 config\run_params.json，设置默认 
 REM   示例：{"country": "US", "fasin": "B0BGHGXYJX", "window_days": 90}
 
 REM Step 1: 父体整体指标（输入：view_return_snapshot；输出：template/output/parent_summary.json）
-python -m etl.run_parent_summary
+py -3 -m etl.run_parent_summary
 
 REM Step 2: 子 ASIN 结构 & 问题款识别（输入：Step1 快照结果；输出：template/output/asin_structure.json）
-python -m etl.run_asin_structure
+py -3 -m etl.run_asin_structure
 
 REM Step 3: 问题 ASIN 核心原因（输入：Step2 结构 + 退货留言标签；输出：template/output/problem_asin_reasons.json）
-python -m etl.run_problem_reasons
+py -3 -m etl.run_problem_reasons
 
 REM Step ALL: 一次性串行跑完全部阶段
-python -m etl.pipeline
+py -3 -m etl.pipeline
