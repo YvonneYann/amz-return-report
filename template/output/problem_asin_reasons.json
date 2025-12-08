@@ -9,8 +9,8 @@
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
       "total_events": 174,
-      "units_returned": 253,
-      "text_coverage": 0.6877,
+      "units_returned": 257,
+      "text_coverage": 0.677,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
@@ -66,8 +66,8 @@
           "is_primary": false
         },
         {
-          "tag_code": "LOOK_COLOR",
-          "tag_name_cn": "外观颜色/做工不满意",
+          "tag_code": "STABILITY_TIP",
+          "tag_name_cn": "整体稳定性差/易晃动",
           "event_count": 3,
           "event_coverage": 0.0811,
           "is_primary": false
