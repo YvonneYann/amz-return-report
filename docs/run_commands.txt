@@ -13,5 +13,8 @@ py -3 -m etl.run_asin_structure
 REM Step 3: 问题 ASIN 核心原因（输入：Step2 结构 + 退货留言标签；输出：template/output/problem_asin_reasons.json）
 py -3 -m etl.run_problem_reasons
 
-REM Step ALL: 一次性串行跑完全部阶段
+REM Step 3.5: 问题 ASIN listing（输入：template/output/problem_asin_reasons.json + template/input/view_bi_amz_asin_product_snapshot.json；输出：template/output/problem_asin_listing.json）
+py -3 -m etl.run_problem_asin_listing
+
+REM Step ALL: 一次性串行跑完全部阶段（输出包含 parent_summary / asin_structure / problem_asin_reasons / reason_explanations / problem_asin_listing）
 py -3 -m etl.pipeline

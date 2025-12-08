@@ -20,6 +20,11 @@ class DorisClient:
         "FROM view_return_snapshot "
         "WHERE country = %s AND fasin = %s AND snapshot_date BETWEEN %s AND %s"
     )
+    BI_SNAPSHOT_SQL = (
+        "SELECT country, fasin, asin, snapshot_date, payload "
+        "FROM view_bi_amz_asin_product_snapshot "
+        "WHERE country = %s AND fasin = %s AND snapshot_date BETWEEN %s AND %s"
+    )
     FACT_SQL = (
         "SELECT country, fasin, asin, review_id, review_source, review_date, tag_code, "
         "review_en, review_cn, sentiment, tag_name_cn, evidence, created_at, updated_at "
@@ -104,6 +109,18 @@ class DorisClient:
     ) -> List[Dict[str, Any]]:
         rows = self._execute_query(self.SNAPSHOT_SQL, (country, fasin, start_date, end_date))
         self._write_dataset("view_return_snapshot", rows)
+        return rows
+
+    def fetch_view_bi_amz_asin_product_snapshot(
+        self,
+        *,
+        country: str,
+        fasin: str,
+        start_date: str,
+        end_date: str,
+    ) -> List[Dict[str, Any]]:
+        rows = self._execute_query(self.BI_SNAPSHOT_SQL, (country, fasin, start_date, end_date))
+        self._write_dataset("view_bi_amz_asin_product_snapshot", rows)
         return rows
 
     def fetch_view_return_fact_details(

@@ -8,6 +8,7 @@ from .asin_structure import build_asin_structure
 from .cli_utils import build_stage_parser, format_window, resolve_runtime
 from .doris_client import DorisClient
 from .parent_summary import calculate_parent_summary
+from .problem_asin_listing import build_problem_asin_listing
 from .problem_reasons import build_problem_reasons
 from .reason_explanations import build_reason_explanations
 
@@ -64,6 +65,12 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
         )
         LOGGER.info("Identified %d ASIN rows", len(asin_structure))
 
+        bi_snapshot_rows = client.fetch_view_bi_amz_asin_product_snapshot(
+            country=args.country,
+            fasin=args.fasin,
+            start_date=start_str,
+            end_date=end_str,
+        )
         fact_rows = client.fetch_view_return_fact_details(
             country=args.country,
             fasin=args.fasin,
@@ -87,12 +94,18 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
             fact_rows=fact_rows,
         )
         LOGGER.info("Filtered %d reason explanation rows", len(reason_explanations))
+        problem_asin_listing = build_problem_asin_listing(
+            problem_reasons=problem_reasons,
+            snapshot_rows=bi_snapshot_rows,
+        )
+        LOGGER.info("Computed %d problem ASIN listing rows", len(problem_asin_listing))
 
         outputs = {
             "parent_summary": parent_summary,
             "asin_structure": asin_structure,
             "problem_asin_reasons": problem_reasons,
             "reason_explanations": reason_explanations,
+            "problem_asin_listing": problem_asin_listing,
         }
         for table_name, payload in outputs.items():
             output_path = client.write_json(table_name, payload)
