@@ -1,0 +1,524 @@
+# 退货发生视角 PRD
+
+## 3. 视图 / 表结构
+
+### 3.1 销量 & 退货数据
+
+- **view\_return\_snapshot**
+
+  - 内容：数据表按国家、父ASIN、子ASIN和日期维度聚合存储每日销售与退货数据，为退货率计算提供核心基础数据支撑。
+  - 主键：`country`、`fasin`、`asin`、`snapshot_date`
+
+输出示例：
+
+```json
+{
+"view_return_snapshot": [
+	{
+		"country" : "US",
+		"fasin" : "B0BGHGXYJX",
+		"asin" : "B0BGHH2L23",
+		"snapshot_date" : "2025-11-04",
+		"units_sold" : 8,
+		"units_returned" : 8
+	},
+	{
+		"country" : "US",
+		"fasin" : "B0BGHGXYJX",
+		"asin" : "B0BGHH2L23",
+		"snapshot_date" : "2025-11-02",
+		"units_sold" : 19,
+		"units_returned" : 8
+	}
+ ]
+}
+```
+
+### 3.2 退货打标 & 标签数据
+
+#### 3.2.1 标签维表
+
+- **return\_dim\_tag**
+
+  - 内容：存放标签维度信息，为事实表提供标签定义、边界以及版本/生效期等维度信息，保证分析口径一致性。
+  - 主键：`tag_code`
+
+输出示例：
+
+```json
+{
+"return_dim_tag": [
+	{
+		"tag_code" : "FIT_COMPAT",
+		"tag_name_cn" : "尺寸\/兼容性不符",
+		"category_code" : "CAT_STRUCT_FIT",
+		"category_name_cn" : "产品结构\/适配体验",
+		"level" : 2,
+		"definition" : "与目标位置\/设备（如水槽、台面、柜体等）尺寸不匹配，导致无法放入、无法跨放，或间隙过大严重影响使用。",
+		"boundary_note" : "尺寸能放下且主要问题为某特定场景下出现倾斜\/回流水等→“沥水\/排水问题”或“整体稳定性差\/易晃动”；仅为轻微缝隙、基本不影响使用→可不打本标签；由页面规格错误引起的认知偏差将由页面描述评估单独处理，本标签不区分该类客观误差。",
+		"is_active" : 1,
+		"version" : 2,
+		"effective_from" : "2025-11-01",
+		"effective_to" : null,
+		"created_at" : "2025-11-17 04:55:33",
+		"updated_at" : "2025-11-17 04:55:33"
+	}
+ ]
+}
+```
+
+#### 3.2.2 打标事实表
+
+- **view\_return\_fact\_details**
+
+  - 内容：存储每个国家、父ASIN、子ASIN、评论日期、评论ID、标签代码的详细退货原因信息，为退货原因分析提供基础数据。
+  - 主键：`country`、`fasin`、`asin`、`review_date`、`review_id`、`tag_code`
+
+输出示例：
+
+```json
+{
+"view_return_fact_details": [
+	{
+		"country" : "US",
+		"fasin" : "B0BGHGXYJX",
+		"asin" : "B0BGHH2L23",
+		"review_date" : "2025-09-21 00:00:00",
+		"review_id" : "R3GDDPAC4WALFE",
+		"tag_code" : "INSTALL_COMPLEX",
+		"review_source" : 0,
+		"review_en" : "Not what I expected. Needed to be put together. Flimsy",
+		"review_cn" : "不符合预期。需要组装。不结实",
+		"sentiment" : -1,
+		"tag_name_cn" : "安装\/组装复杂（耗时高）",
+		"evidence" : "Needed to be put together",
+		"created_at" : "2025-11-17 06:45:47",
+		"updated_at" : "2025-11-17 06:45:47"
+	}
+ ]
+}
+```
+
+---
+
+
+## 4. Python 计算模块
+
+> 目标：对给定**国家（站点） + 父 ASIN + 时间范围**，完成所有与退货分析报告相关的数值计算与聚合，统一输出标准化 JSON 供下游模块使用。所有聚合在父体或子 ASIN 粒度上，均需显式带上 `country` 维度（例如：`group by country + parent_asin` 或 `group by country + parent_asin + asin`）。
+
+---
+
+### 4.1 父体整体指标计算
+
+> 目标：在指定国家/站点与时间范围内，计算单个父 ASIN 的整体销量、退货量与退货率，作为退货分析报告的盘子基准，并为后续模块提供 `return_rate_parent` 等基准指标。
+
+#### 输入
+
+- 上游来源：view\_return\_snapshot
+- 输入参数：
+  - `country`：站点/国家（如 `US`，`JP`）。
+  - `fasin`：父 ASIN。
+  - `start_date`：起始日期（含）。
+  - `end_date`：结束日期（含）。
+- 输入 JSON 结构示例：
+
+```json
+{
+"view_return_snapshot": [
+	{
+		"country" : "US",
+		"fasin" : "B0BGHGXYJX",
+		"asin" : "B0BGHH2L23",
+		"snapshot_date" : "2025-11-04",
+		"units_sold" : 8,
+		"units_returned" : 8
+	},
+	{
+		"country" : "US",
+		"fasin" : "B0BGHGXYJX",
+		"asin" : "B0BGHH2L23",
+		"snapshot_date" : "2025-11-02",
+		"units_sold" : 19,
+		"units_returned" : 8
+	}
+ ]
+}
+```
+
+#### 逻辑
+
+1. 筛选条件：
+   - `country = 输入.country`；
+   - `fasin = 输入.fasin`；
+   - `start_date ≤ snapshot_date ≤ end_date`。
+2. 聚合维度：
+   - `group by country, fasin`。
+3. 指标计算：
+   - `total_units_sold_parent = sum(units_sold)`；
+   - `total_units_returned_parent = sum(units_returned)`；
+   - `return_rate_parent = total_units_returned_parent / total_units_sold_parent`。
+
+#### 输出
+
+- 输出给：下游 子 ASIN 结构计算，需用 `return_rate_parent`；
+- 输出 JSON 结构示例：
+
+```json
+{
+  "parent_summary": {
+    "country": "US",
+    "fasin": "B0BGHGXYJX",
+    "start_date": "2025-01-01",
+    "end_date": "2025-11-12",
+    "units_sold": 20088,
+    "units_returned": 2272,
+    "return_rate": 0.113
+  }
+}
+```
+
+---
+
+### 4.2 子 ASIN 结构计算
+
+> 目标：在指定国家/站点与时间范围内，基于父体 `parent_summary`，计算各子 ASIN 的销量、退货量、退货率及其在父体中的贡献占比（谁撑起销量、谁撑起退货），并按统一规则识别 A/B 类问题 ASIN 及高退货小体量观察名单，为后续原因分析提供输入。
+
+#### 输入
+
+- 上游来源：
+  - 4.1 输出的 `parent_summary`；
+  - view\_return\_snapshot
+- 输入参数：
+  - `country`：站点/国家（如 `US`，`JP`）。
+  - `fasin`：父 ASIN。
+  - `start_date`：起始日期（含）。
+  - `end_date`：结束日期（含）。
+- 输入 JSON 结构示例：
+
+```json
+{
+  "parent_summary": {
+    "country": "US",
+    "fasin": "B0BGHGXYJX",
+    "start_date": "2025-01-01",
+    "end_date": "2025-11-12",
+    "units_sold": 20088,
+    "units_returned": 2272,
+    "return_rate": 0.113
+  },
+  "view_return_snapshot": [
+	{
+		"country" : "US",
+		"fasin" : "B0BGHGXYJX",
+		"asin" : "B0BGHH2L23",
+		"snapshot_date" : "2025-11-04",
+		"units_sold" : 8,
+		"units_returned" : 8
+	},
+	{
+		"country" : "US",
+		"fasin" : "B0BGHGXYJX",
+		"asin" : "B0BGHH2L23",
+		"snapshot_date" : "2025-11-02",
+		"units_sold" : 19,
+		"units_returned" : 8
+	}
+ ]
+}
+```
+
+#### 逻辑
+
+1. 筛选条件：
+   - `country = 输入.country`；
+   - `fasin = 输入.fasin`；
+   - `start_date ≤ snapshot_date ≤ end_date`。
+2. 聚合维度：
+   - `group by country, fasin, asin`。
+3. 指标计算：
+   - `units_sold_asin = sum(units_sold)`；
+   - `units_returned_asin = sum(units_returned)`；
+   - `return_rate_asin = units_returned_asin / units_sold_asin`；
+   - 从 `parent_summary` 获取：
+     - `total_units_sold_parent = parent_summary.units_sold`；
+     - `total_units_returned_parent = parent_summary.units_returned`；
+     - `R_parent = parent_summary.return_rate`；
+   - 结构占比：
+     - `sales_share = units_sold_asin / total_units_sold_parent`；
+     - `returns_share = units_returned_asin / total_units_returned_parent`。
+4. A/B 类问题 ASIN 识别规则：
+
+   - 设：
+     - `R_parent = parent_summary.return_rate`（父体整体退货率）；
+     - `R_warn = 0.10`（类目退货警戒线，默认值）；
+     - `R_high_B = max(R_parent, R_warn) + 0.02`（高退货阈值，默认值）。
+
+   - **类 A：主战场 ASIN（Main Battlefield）**  
+     满足以下任一条件即为类 A：
+     - `sales_share ≥ 0.10`（销量贡献占比阈值，默认值）
+     - 或 `returns_share ≥ 0.10`（退货贡献占比阈值，默认值）
+
+     > 说明：类 A 不要求退货率高于父体，重点强调其对整体销量/退货盘子的贡献度，是**无论健康与否都需要重点关注的主战场款**。
+
+   - **类 B：高退货问题 ASIN（High Return Problem）**  
+     同时满足以下全部条件即为类 B：
+
+     1. 退货率显著高于父体/警戒线：  
+        `return_rate_asin ≥ R_high_B`。
+
+     2. 退货量有一定体量：  
+        `units_returned_asin ≥ 10`（过滤卖 3 退 2 这类极端偶然情况，默认值）。
+
+     3. 对盘子有一定权重（排除体量很小的小透明）：  
+        `sales_share > 0.05` **或** `returns_share > 0.05`（结构占比阈值，默认值）。  
+        仅当 `sales_share ≤ 0.05` 且 `returns_share ≤ 0.05` 时，视作“小体量可暂不优先治理”的款式。
+
+   - 对于满足 B 类退货率阈值和退货量阈值，但 `sales_share ≤ 0.05` 且 `returns_share ≤ 0.05` 的 ASIN：
+     - 标记为 `high_return_watchlist = true`（高退货小体量观察名单）；
+     - 不纳入正式 A/B 问题 ASIN 主清单。
+
+5. 子 ASIN 结构表：
+   - 在完成上述指标计算与 A/B 类问题 ASIN 识别后，将所有子 ASIN 的聚合结果（含 `problem_class`、`high_return_watchlist` 等标记字段）合并为一张结构表；
+   - 为了便于业务同学阅读理解，在结构表展示层增加中文标签字段：
+     - `problem_class` 作为内部分类编码，取值仅为 `"A"`、`"B"` 或 `null`，用于数据库查询与下游程序逻辑；
+     - `problem_class_label_cn` 作为展示字段：
+       - 当 `problem_class = "A"` 时，显示为 `"主战场款"`；
+       - 当 `problem_class = "B"` 时，显示为 `"高退货问题款"`；
+       - 当 `problem_class = null` 时，显示为空字符串或 `"—"`；
+     - 报告中的表使用 `problem_class_label_cn` 这一中文字段作为列头展示，而不是直接展示 A/B 编码。
+   - 按 `returns_share` 降序排序（退货占比越高的 ASIN 越靠前），可配置是否仅展示 Top N（默认 N=10），用于突出对整体退货影响最大的款式；
+   - 该表为“结构视图 + 问题 ASIN 清单”的功能，无需额外维护独立的问题 ASIN 清单表。
+
+#### 输出
+
+- 输出给：下游 4.3 问题 ASIN 核心原因计算，需要 `problem_class` 与问题 ASIN清单；
+- 输出 JSON 结构示例：
+
+```json
+{
+  "asin_structure": [
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "start_date": "2025-01-01",
+      "end_date": "2025-11-12",
+      "units_sold": 11302,
+      "units_returned": 1140,
+      "return_rate": 0.101,
+      "sales_share": 0.563,
+      "returns_share": 0.502,
+      "problem_class": "A",
+      "problem_class_label_cn": "主战场款",
+      "high_return_watchlist": false
+    }
+  ]
+}
+```
+
+---
+
+### 4.3 问题 ASIN 核心原因计算
+
+> 目标：基于 4.2 中识别出的 A/B 类问题 ASIN 清单，在指定国家/站点与时间范围内，分别为每个问题 ASIN 找到其退货的核心原因（二级标签维度），并输出标准化 JSON，遵循二八原则或 Top1 原则聚焦主要问题。
+
+#### 输入
+
+- 上游来源：
+  - 4.2 输出的 `asin_structure`（包含 `problem_class`、`high_return_watchlist` 等）；
+  - view\_return\_fact\_details
+- 输入参数：
+  - `country`：站点/国家（如 `US`，`JP`）。
+  - `fasin`：父 ASIN。
+  - `start_date`：起始日期（含）。
+  - `end_date`：结束日期（含）。
+- 输入 JSON 结构示例：
+
+```json
+{
+  "asin_structure": [
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "start_date": "2025-01-01",
+      "end_date": "2025-11-12",
+      "units_sold": 11302,
+      "units_returned": 1140,
+      "return_rate": 0.101,
+      "sales_share": 0.563,
+      "returns_share": 0.502,
+      "problem_class": "A",
+      "problem_class_label_cn": "主战场款",
+      "high_return_watchlist": false
+    }
+  ],
+  "view_return_fact_details": [
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_id": "R3GDDPAC4WALFE",
+      "review_source": 0,
+      "review_date": "2025-11-10 00:00:00",
+      "tag_code": "INSTALL_COMPLEX",
+      "review_en": "Not what I expected. Needed to be put together. Flimsy",
+      "review_cn": "不符合预期。需要组装。不结实",
+      "sentiment": -1,
+      "tag_name_cn": "安装\/组装复杂（耗时高）",
+      "evidence": "Needed to be put together",
+      "created_at": "2025-11-17 06:45:47",
+      "updated_at": "2025-11-17 06:45:47"
+    }
+  ]
+}
+```
+
+#### 逻辑
+
+1. 构建问题 ASIN 清单：
+   - 从 `asin_structure` 中筛选所有 `problem_class = "A"` 或 `"B"` 的记录，形成 `problem_asin_list`；
+
+2. 在打标事实表 `view_return_fact_details` 中筛选：
+   - `country = 输入.country`；
+   - `fasin = 输入.fasin`；
+   - `review_source ∈ {0, 1}`（退货留言 + 买家之声）；
+   - `start_date ≤ review_date ≤ end_date`；
+   - `asin ∈ problem_asin_list`。
+
+3. 对于 `problem_asin_list` 中的每一个 ASIN（按 `country + fasin + asin` 粒度）：
+
+   1. 统计该 ASIN 的退货文本样本总数：
+      - `N_events_asin = count(distinct review_id where asin = X)`。
+
+   2. 在该 ASIN 内按 `tag_code` 聚合：
+      - `event_count_tag_asin = count(distinct review_id where asin = X and tag_code = Y)`；
+      - `event_coverage_tag_asin = event_count_tag_asin / N_events_asin`。
+
+   3. 样本置信度评估：
+      - 为每个问题 ASIN 计算文本样本相关指标：
+        - `text_sample_count = N_events_asin`（该 ASIN 在当前站点 + 时间范围内的退货留言/买家之声事件数）；
+        - 从 `asin_structure` 中获取该 ASIN 在同一站点 + 时间范围内的退货量：`units_returned_asin`；
+        - `text_coverage = text_sample_count / units_returned_asin`（留言率，若分母为 0 则置为 0）。
+      - 基于 `text_sample_count` 与 `text_coverage` 打标样本置信度等级：
+        - 高置信（`high`）：`text_sample_count ≥ 30` 且 `text_coverage ≥ 0.10`；
+        - 中置信（`medium`）：`15 ≤ text_sample_count < 30` 且 `text_coverage ≥ 0.05`；
+        - 低置信（`low`）：其他情况。
+      - 额外生成布尔字段 `can_deep_dive_reasons`：
+        - 当置信度为 `high` 或 `medium` 时标记为 `true`，表示可以在报告中对该 ASIN 做结构化原因拆解；
+        - 当置信度为 `low` 时标记为 `false`，报告中仅做“问题画像/典型用户声音”展示，不做严肃占比结论。
+
+   4. 排序与核心原因选取：
+      - 对于 `can_deep_dive_reasons = true` 的 ASIN：
+        - 按 `event_count_tag_asin` 降序；
+        - 默认规则：从排序第一的标签开始，按 `event_coverage_tag_asin` 累加，直到累计覆盖率 ≥ `COVERAGE_THRESHOLD`（0.8，默认值），中途至少保留 1 个标签，最多保留 3 个标签；
+        - 实际系统中通过配置项控制，便于不同品类/业务方对“核心原因”的口径调整。
+      - 对于 `can_deep_dive_reasons = false` 的 ASIN：
+        - 可以仅按 `event_count_tag_asin` 输出 Top2 标签作为“主诉问题”参考，不强制进行覆盖率累计与多标签核心原因集合选择。
+
+#### 输出
+
+- 输出 JSON 结构示例：
+
+```json
+{
+  "problem_asin_reasons": [
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "start_date": "2025-01-01",
+      "end_date": "2025-11-12",
+      "problem_class": "A",
+      "problem_class_label_cn": "主战场款",
+      "total_events": 40,
+      "units_returned": 160,
+      "text_coverage": 0.25,
+      "reason_confidence_level": "high",
+      "can_deep_dive_reasons": true,
+      "core_reasons": [
+        {
+          "tag_code": "FIT_COMPAT",
+          "tag_name_cn": "尺寸/兼容性不符",
+          "event_count": 13,
+          "event_coverage": 0.325,
+          "is_primary": true
+        },
+        {
+          "tag_code": "VALUE_WEAK",
+          "tag_name_cn": "性价比差/不值这个价",
+          "event_count": 8,
+          "event_coverage": 0.200,
+          "is_primary": false
+        }
+      ],
+      "coverage_threshold": 0.8,
+      "coverage_reached": 0.525
+    }
+  ]
+}
+```
+
+> 说明：
+> - `country` 与 `fasin` 始终保留，确保可在多站点、多父体场景下进行追溯与过滤；
+> - `core_reasons` 为每个问题 ASIN 选出的 1~N 个核心二级原因标签；
+> - `coverage_threshold` 为系统配置的目标覆盖率（默认值 0.8）；
+> - `coverage_reached` 为核心原因集合在该 ASIN 文本样本中的实际累计覆盖率；
+> - `text_coverage`、`reason_confidence_level` 与 `can_deep_dive_reasons` 用于样本置信度评估，指导报告中对不同 ASIN 采用“结构化原因拆解”或“定性画像”两种不同呈现深度。
+
+---
+
+
+## 5. ETL 流程
+
+```	text
+etl/
+├── config.py             # 全局配置（DB、阈值、运行参数等）
+├── calculator.py         # 公共工具函数（日期处理、安全除法、coverage 计算等）
+├── doris_client.py       # Doris 连接 & 通用查询/写入封装
+├── parent_summary.py     # 4.1 父体整体指标计算逻辑
+├── asin_structure.py     # 4.2 子 ASIN 结构 & problem_class 判定
+├── problem_reasons.py    # 4.3 问题 ASIN 核心原因拆解
+├── run_parent_summary.py # 单独运行 4.1 的 CLI
+├── run_asin_structure.py # 单独运行 4.2 的 CLI
+├── run_problem_reasons.py# 单独运行 4.3 的 CLI
+├── cli_utils.py          # CLI 参数解析 & 时间窗口计算
+└── pipeline.py           # ETL 编排入口（串联 4.1/4.2/4.3 并写入模板目录）
+
+template/
+├── input/                # Doris 抽取的原始快照/事实缓存
+└── output/               # 4.1/4.2/4.3 JSON 结果（供下游消费）
+
+config/
+├── environment.yaml      # Doris 连接信息
+└── run_params.json       # 默认运行参数（country/fasin/window_days 等）
+
+requirements.txt          # Python 依赖列表
+```
+
+1. **Extract（抽取）**：
+
+   - 直接从 Doris 读取 `view_return_snapshot`、`view_return_fact_details`、
+`return_dim_tag`，并将源数据缓存到 `template/input/`，方便追溯/复盘。
+
+2. **Transform（Python 计算）**：
+
+   - 4.1/4.2/4.3 拆分为 `parent_summary.py`、`asin_structure.py`、`problem_reasons.py`；
+   - 所有阈值、日期窗口、公共函数分别集中在 `config.py`、`cli_utils.py`、`calculator.py`；
+   - 阶段性 CLI（`run_parent_summary.py`, `run_asin_structure.py`, `run_problem_reasons.py`）与 `pipeline.py` 共享同一套运行逻辑。
+
+3. **Load（输出）**：
+
+   - 将 4.1/4.2/4.3 的 JSON 结果统一写入 `template/output/`，供 BI / 报告模块直接消费；
+   - 若需要写回 Doris，可由下游读取 JSON 后自行执行 `REPLACE INTO / INSERT ... ON DUPLICATE KEY UPDATE`，确保 (`country`, `fasin`, `start_date`, `end_date`) 幂等。
+
+4. **Pipeline 编排**：
+
+   - `config/run_params.json` 维护默认参数，`python -m etl.run_*` 可独立触发每个模块，`python -m etl.pipeline` 可一次性串联；
+   - CLI 可额外传入 `--country`, `--fasin`, `--window-days`, `--biz-date` 等，按需覆盖默认值；
+   - 执行顺序为：解析参数 → 计算窗口 → 依次运行 4.1/4.2/4.3 → 写入 	`template/input/`/`template/output/` 并输出日志，可方便集成到 Airflow / Cron 等调度系统。
+
+---
+
+
+（完）
