@@ -1,0 +1,19 @@
+﻿# Order Attribution ETL Run Commands
+
+## Full pipeline (order attribution view)
+py -3 -m etl.order_attribution.pipeline
+
+## Parent summary only (order attribution)
+py -3 -m etl.order_attribution.run_parent_summary
+
+## ASIN structure only (order attribution)
+py -3 -m etl.order_attribution.run_asin_structure
+
+## Problem reasons only (order attribution)
+py -3 -m etl.order_attribution.run_problem_reasons
+
+## Problem ASIN listing only (order attribution)
+py -3 -m etl.order_attribution.run_problem_asin_listing
+
+## Reason explanations only (order attribution)
+py -3 -m etl.order_attribution.run_reason_explanations

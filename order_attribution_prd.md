@@ -100,3 +100,16 @@
 }
 ```
 
+
+## 4. Python 计算模块
+
+### 4.4 问题 ASIN 商品信息版本筛选（problem_asin_listing）
+
+> 说明：`view_bi_amz_asin_product_snapshot` 的版本筛选不在 Doris 视图内处理，而在 Python 侧按调整日选择最贴近的 before/after 快照。
+
+- 拉取范围：一次性从 Doris 拉取覆盖 before/after 两段窗口的日期范围（end 至少取 max(after_end, today)），再在 Python 侧筛选。
+- 规则（按 ASIN 独立筛选 1 个版本）：
+  - before：选择 `snapshot_date <= adjust_date` 且最接近 `adjust_date` 的快照；若无调整日前快照，则该 ASIN 在 before 为空。
+  - after：优先选 `snapshot_date >= adjust_date` 且落在 after 窗口内、距离 `adjust_date` 最近的快照；若窗口内无，则取 `snapshot_date >= adjust_date` 的最新快照；若仍无，则取该 ASIN 最新快照。
+- 输出形态：文件名 `problem_asin_listing_before/after.json`，顶级表名 `problem_asin_listing_before/after`，每行记录含 `window_label`、`start_date`、`end_date` 便于对比。
+- 责任边界：Doris 仅供数据源，版本选择完全由 Python 脚本完成。

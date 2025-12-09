@@ -1,0 +1,11 @@
+﻿{
+  "country": "US",
+  "fasin": "B0BGHGXYJX",
+  "adjust_date": "2025-08-15",
+  "window_days": 90,
+  "return_lag_days": 35,
+  "purchase_start_date_before": null,
+  "purchase_end_date_before": null,
+  "purchase_start_date_after": null,
+  "purchase_end_date_after": null
+}
