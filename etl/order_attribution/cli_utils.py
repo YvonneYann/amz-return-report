@@ -25,6 +25,8 @@ def build_stage_parser(description: str) -> argparse.ArgumentParser:
     parser.add_argument("--purchase-end-date-after", dest="purchase_end_date_after", help="Manual post window end")
     parser.add_argument("--data-dir", help="Optional override for template/order_attribution/input")
     parser.add_argument("--output-dir", help="Optional override for template/order_attribution/output")
+    parser.add_argument("--env-file", help="Environment config file (YAML)")
+    parser.add_argument("--thresholds-json", help="JSON string to override threshold config")
     parser.add_argument(
         "--params-file",
         default=str(DEFAULT_PARAMS_PATH),
@@ -60,6 +62,22 @@ def _maybe_date(value: Any) -> date | None:
         return None
 
 
+def _normalize_thresholds(raw: Any) -> Dict[str, Any]:
+    if raw is None:
+        return {}
+    if isinstance(raw, dict):
+        return raw
+    if isinstance(raw, str):
+        try:
+            parsed = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"thresholds-json is not valid JSON: {exc}") from exc
+        if not isinstance(parsed, dict):
+            raise ValueError("thresholds-json must decode to an object")
+        return parsed
+    raise ValueError("threshold overrides must be a dict or JSON string")
+
+
 def compute_windows(
     *,
     adjust_date: date,
@@ -83,6 +101,7 @@ def compute_windows(
 def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str, Tuple[date, date]], int]:
     data_dir = Path(args.data_dir).resolve() if args.data_dir else None
     output_dir = Path(args.output_dir).resolve() if args.output_dir else None
+    env_file = Path(args.env_file).resolve() if args.env_file else None
     params_path = Path(args.params_file).resolve() if args.params_file else DEFAULT_PARAMS_PATH
     params = _load_params(params_path)
 
@@ -99,6 +118,10 @@ def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str,
     window_days = args.window_days or _coerce_int(params.get("window_days")) or 90
     return_lag_days = args.return_lag_days or _coerce_int(params.get("return_lag_days")) or 35
 
+    thresholds_override = _normalize_thresholds(params.get("thresholds"))
+    if args.thresholds_json:
+        thresholds_override = _normalize_thresholds(args.thresholds_json)
+
     windows = compute_windows(
         adjust_date=adjust_date,
         window_days=window_days,
@@ -108,7 +131,14 @@ def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str,
         after_end=args.purchase_end_date_after or params.get("purchase_end_date_after"),
     )
 
-    config = build_config(data_dir=data_dir, output_dir=output_dir, return_lag_days=return_lag_days, window_days=window_days)
+    config = build_config(
+        data_dir=data_dir,
+        output_dir=output_dir,
+        return_lag_days=return_lag_days,
+        window_days=window_days,
+        environment_path=env_file,
+        threshold_overrides=thresholds_override,
+    )
     return config, windows, return_lag_days
 
 

@@ -150,7 +150,11 @@ def _fetch_inputs_from_doris(
         end_str,
         config.paths.data_dir,
     )
-    with DorisClient(data_dir=config.paths.data_dir, output_dir=config.paths.output_dir) as client:
+    with DorisClient(
+        database=config.database,
+        data_dir=config.paths.data_dir,
+        output_dir=config.paths.output_dir,
+    ) as client:
         snapshot_rows = client.fetch_view_return_snapshot(
             country=country,
             fasin=fasin,

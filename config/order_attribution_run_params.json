@@ -7,5 +7,23 @@
   "purchase_start_date_before": null,
   "purchase_end_date_before": null,
   "purchase_start_date_after": null,
-  "purchase_end_date_after": null
+  "purchase_end_date_after": null,
+  "thresholds": {
+    "warn_return_rate": 0.1,
+    "high_return_buffer": 0.02,
+    "min_sales_share_a": 0.1,
+    "min_returns_share_a": 0.1,
+    "min_sales_share_b": 0.05,
+    "min_returns_share_b": 0.05,
+    "min_units_returned_b": 10,
+    "watchlist_threshold": 0.05,
+    "top_asin_rows": 10,
+    "coverage_threshold": 0.8,
+    "max_core_reasons": 3,
+    "min_core_reasons": 1,
+    "text_sample_high": 30,
+    "text_sample_medium": 15,
+    "text_coverage_high": 0.1,
+    "text_coverage_medium": 0.05
+  }
 }
