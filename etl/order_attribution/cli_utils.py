@@ -18,7 +18,6 @@ def build_stage_parser(description: str) -> argparse.ArgumentParser:
     parser.add_argument("--fasin", help="Parent ASIN")
     parser.add_argument("--adjust-date", dest="adjust_date", help="Adjustment anchor date (YYYY-MM-DD)")
     parser.add_argument("--window-days", type=int, help="Comparison window days (default 90)")
-    parser.add_argument("--return-lag-days", type=int, help="Max return lag days (default 35)")
     parser.add_argument("--purchase-start-date-before", dest="purchase_start_date_before", help="Manual pre window start")
     parser.add_argument("--purchase-end-date-before", dest="purchase_end_date_before", help="Manual pre window end")
     parser.add_argument("--purchase-start-date-after", dest="purchase_start_date_after", help="Manual post window start")
@@ -98,7 +97,7 @@ def compute_windows(
     }
 
 
-def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str, Tuple[date, date]], int]:
+def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str, Tuple[date, date]]]:
     data_dir = Path(args.data_dir).resolve() if args.data_dir else None
     output_dir = Path(args.output_dir).resolve() if args.output_dir else None
     env_file = Path(args.env_file).resolve() if args.env_file else None
@@ -116,7 +115,6 @@ def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str,
     adjust_date = parse_date(adjust_value)
 
     window_days = args.window_days or _coerce_int(params.get("window_days")) or 90
-    return_lag_days = args.return_lag_days or _coerce_int(params.get("return_lag_days")) or 35
 
     thresholds_override = _normalize_thresholds(params.get("thresholds"))
     if args.thresholds_json:
@@ -134,12 +132,11 @@ def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str,
     config = build_config(
         data_dir=data_dir,
         output_dir=output_dir,
-        return_lag_days=return_lag_days,
         window_days=window_days,
         environment_path=env_file,
         threshold_overrides=thresholds_override,
     )
-    return config, windows, return_lag_days
+    return config, windows
 
 
 def format_window(window: Tuple[date, date]) -> Tuple[str, str]:

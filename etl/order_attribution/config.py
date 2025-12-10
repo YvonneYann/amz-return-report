@@ -40,14 +40,12 @@ class PipelineConfig:
     database: DatabaseConfig = field(default_factory=DatabaseConfig)
     thresholds: ThresholdConfig = field(default_factory=ThresholdConfig)
     default_window_days: int = 90
-    default_return_lag_days: int = 35
 
 
 def build_config(
     *,
     data_dir: Optional[Path] = None,
     output_dir: Optional[Path] = None,
-    return_lag_days: Optional[int] = None,
     window_days: Optional[int] = None,
     environment_path: Optional[Path] = None,
     threshold_overrides: Optional[Dict[str, Any]] = None,
@@ -59,8 +57,6 @@ def build_config(
         output_dir=output_dir or DEFAULT_OUTPUT_DIR,
     )
     config = PipelineConfig(paths=paths, database=db_conf, thresholds=thresholds)
-    if return_lag_days is not None:
-        config.default_return_lag_days = int(return_lag_days)
     if window_days is not None:
         config.default_window_days = int(window_days)
     return config

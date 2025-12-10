@@ -73,23 +73,10 @@ def _in_purchase_range(purchase_date: Any, start_date: Optional[date], end_date:
     return True
 
 
-def _within_lag(purchase_date: Any, review_date: Any, return_lag_days: int) -> bool:
-    p = _parse_optional_date(purchase_date)
-    r = _parse_optional_date(review_date)
-    if p is None:
-        return True
-    if r is None:
-        return True
-    if r < p:
-        return False
-    return (r - p).days <= return_lag_days
-
-
 def build_reason_explanations(
     *,
     problem_reasons: object,
     fact_rows: object,
-    return_lag_days: int,
 ) -> List[Dict[str, Any]]:
     problem_rows = _unwrap_problem_rows(problem_reasons)
     fact_rows_list = _unwrap_fact_rows(fact_rows)
@@ -111,8 +98,6 @@ def build_reason_explanations(
         if filters.get("fasin") and row.get("fasin") and row["fasin"] != filters["fasin"]:
             continue
         if not _in_purchase_range(row.get("purchase_date"), filters.get("start_date"), filters.get("end_date")):
-            continue
-        if not _within_lag(row.get("purchase_date"), row.get("review_date"), return_lag_days):
             continue
         enriched = dict(row)
         if filters.get("window_label"):

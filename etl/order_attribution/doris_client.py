@@ -100,7 +100,10 @@ class DorisClient(_BaseDorisClient):
         start_date: str,
         end_date: str,
     ) -> List[Dict[str, Any]]:
-        rows = self._execute_query(self.ORDERS_SQL, (country, fasin, start_date, end_date))
+        # purchase_date 为 DATETIME，原始 YYYY-MM-DD 边界会漏掉当天 00:00:00 之后的记录，补齐日内时间段。
+        start_ts = f"{start_date} 00:00:00" if len(start_date) == 10 else start_date
+        end_ts = f"{end_date} 23:59:59" if len(end_date) == 10 else end_date
+        rows = self._execute_query(self.ORDERS_SQL, (country, fasin, start_ts, end_ts))
         self._write_dataset("view_return_orders_snapshot", rows)
         return rows
 
@@ -112,7 +115,9 @@ class DorisClient(_BaseDorisClient):
         start_date: str,
         end_date: str,
     ) -> List[Dict[str, Any]]:
-        rows = self._execute_query(self.FACT_SQL, (country, fasin, start_date, end_date))
+        start_ts = f"{start_date} 00:00:00" if len(start_date) == 10 else start_date
+        end_ts = f"{end_date} 23:59:59" if len(end_date) == 10 else end_date
+        rows = self._execute_query(self.FACT_SQL, (country, fasin, start_ts, end_ts))
         self._write_dataset("view_return_fact_details", rows)
         return rows
 

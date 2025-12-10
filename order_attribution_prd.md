@@ -106,15 +106,14 @@
 ### 4.1 与退货视角的差异补充（仅列差异）
 
 - 时间窗口：按 `adjust_date` 左右的 before/after 购买窗口（默认 90 天），订单判定基于 purchase_date；参数见 `config/order_attribution_run_params.json`。
-- 退货滞后：对订单退货事件按 purchase_date → review_date 间隔做过滤（默认 `return_lag_days = 35`），区别于退货视角的 review_date 窗口校验。
 - 输入表侧重点：
   - `view_return_orders_snapshot` 作为退货事实源（purchase_date 粒度）；
-  - `view_return_fact_details` 在 Python 侧按 purchase_date + return_lag 过滤，再写出 before/after 两套结果；
+  - `view_return_fact_details` 直接按 purchase_date 窗口过滤，再写出 before/after 两套结果；
   - `view_bi_amz_asin_product_snapshot` 拉全 before/after 覆盖范围，Python 端为两个窗口各自挑选最优快照。
 - 输出形态：所有重加工表增加 `window_label`、`start_date`、`end_date`，输出为成对的 `*_before.json` 与 `*_after.json`。
 - 参数/配置：
   - `config.py` 支持 `environment_path` 与 `threshold_overrides`，可独立于退货视角设置阈值；
-  - CLI 增加 `--adjust-date`、before/after 窗口覆盖、`--return-lag-days`、`--thresholds-json`、`--env-file`，不使用退货视角的 biz_date 逻辑。
+  - CLI 增加 `--adjust-date`、before/after 窗口覆盖、`--thresholds-json`、`--env-file`，不使用退货视角的 biz_date 逻辑。
 - Pipeline 行为：从 Doris 抽取时直接覆盖 `template/order_attribution/input` 缓存，输出到 `template/order_attribution/output`，不依赖已有本地数据。
 
 ### 4.2 问题 ASIN 商品信息版本筛选（problem_asin_listing）

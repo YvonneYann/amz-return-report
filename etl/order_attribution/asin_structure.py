@@ -31,7 +31,6 @@ def _filter_returns(
     country: str,
     fasin: str,
     window: Tuple,
-    return_lag_days: int,
 ):
     start, end = window
     start_d = parse_date(start)
@@ -44,8 +43,6 @@ def _filter_returns(
             continue
         review_date = parse_date(row.get("review_date")) if row.get("review_date") else purchase_date
         if review_date < purchase_date:
-            continue
-        if (review_date - purchase_date).days > return_lag_days:
             continue
         yield row
 
@@ -92,7 +89,6 @@ def build_asin_structure(
     window_label: str,
     parent_summary: Dict,
     thresholds: ThresholdConfig,
-    return_lag_days: int,
 ) -> List[Dict]:
     start_fmt, end_fmt = format_date(window[0]), format_date(window[1])
     filtered_snapshot = list(
@@ -104,7 +100,6 @@ def build_asin_structure(
             country=country,
             fasin=fasin,
             window=window,
-            return_lag_days=return_lag_days,
         )
     )
 

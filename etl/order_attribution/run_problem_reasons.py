@@ -23,7 +23,7 @@ def main(argv: list[str] | None = None) -> None:
         level=getattr(logging, (args.log_level or "INFO").upper(), logging.INFO),
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     )
-    config, windows, return_lag_days = resolve_runtime(args)
+    config, windows = resolve_runtime(args)
     inputs = load_or_fetch_inputs(
         config=config,
         windows=windows,
@@ -47,7 +47,6 @@ def main(argv: list[str] | None = None) -> None:
             fasin=args.fasin,
             window=window,
             window_label=label,
-            return_lag_days=return_lag_days,
         )
         asin_structure = build_asin_structure(
             snapshot_rows=inputs.get("view_return_snapshot", []),
@@ -58,7 +57,6 @@ def main(argv: list[str] | None = None) -> None:
             window_label=label,
             parent_summary=parent_summary,
             thresholds=config.thresholds,
-            return_lag_days=return_lag_days,
         )
         problem_reasons = build_problem_reasons(
             asin_structure=asin_structure,
@@ -69,7 +67,6 @@ def main(argv: list[str] | None = None) -> None:
             fasin=args.fasin,
             window=window,
             window_label=label,
-            return_lag_days=return_lag_days,
         )
         output_path = config.paths.output_dir / f"problem_asin_reasons_{label}.json"
         _write_table(

@@ -21,7 +21,7 @@ def main(argv: list[str] | None = None) -> None:
         level=getattr(logging, (args.log_level or "INFO").upper(), logging.INFO),
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     )
-    config, windows, return_lag_days = resolve_runtime(args)
+    config, windows = resolve_runtime(args)
     inputs = load_or_fetch_inputs(
         config=config,
         windows=windows,
@@ -31,13 +31,12 @@ def main(argv: list[str] | None = None) -> None:
     for label, window in windows.items():
         start_str, end_str = format_window(window)
         LOGGER.info(
-            "[%s] Parent summary for %s/%s between %s and %s (return_lag_days=%s)",
+            "[%s] Parent summary for %s/%s between %s and %s",
             label,
             args.country,
             args.fasin,
             start_str,
             end_str,
-            return_lag_days,
         )
         summary = calculate_parent_summary(
             snapshot_rows=inputs.get("view_return_snapshot", []),
@@ -46,7 +45,6 @@ def main(argv: list[str] | None = None) -> None:
             fasin=args.fasin,
             window=window,
             window_label=label,
-            return_lag_days=return_lag_days,
         )
         output_path = config.paths.output_dir / f"parent_summary_{label}.json"
         _write_table(output_path, "parent_summary", summary, key_override=f"parent_summary_{label}")

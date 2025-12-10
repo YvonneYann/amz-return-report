@@ -210,7 +210,6 @@ def _run_window(
     inputs: Dict[str, List[Dict]],
     country: str,
     fasin: str,
-    return_lag_days: int,
     adjust_date,
 ) -> Dict[str, List[Dict] | Dict]:
     snapshot_rows = inputs.get("view_return_snapshot", [])
@@ -232,7 +231,6 @@ def _run_window(
         fasin=fasin,
         window=window,
         window_label=window_label,
-        return_lag_days=return_lag_days,
     )
 
     asin_structure = build_asin_structure(
@@ -244,7 +242,6 @@ def _run_window(
         window_label=window_label,
         parent_summary=parent_summary,
         thresholds=config.thresholds,
-        return_lag_days=return_lag_days,
     )
 
     problem_reasons = build_problem_reasons(
@@ -256,13 +253,11 @@ def _run_window(
         fasin=fasin,
         window=window,
         window_label=window_label,
-        return_lag_days=return_lag_days,
     )
 
     reason_explanations = build_reason_explanations(
         problem_reasons=problem_reasons,
         fact_rows=fact_rows,
-        return_lag_days=return_lag_days,
     )
 
     problem_asin_listing = build_problem_asin_listing(
@@ -288,7 +283,7 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, Dict[str, 
         level=getattr(logging, (args.log_level or "INFO").upper(), logging.INFO),
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     )
-    config, windows, return_lag_days = resolve_runtime(args)
+    config, windows = resolve_runtime(args)
     adjust_date = windows.get("after", next(iter(windows.values())))[0]
     inputs = load_or_fetch_inputs(
         config=config,
@@ -300,13 +295,12 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, Dict[str, 
     for label, window in windows.items():
         start_str, end_str = format_window(window)
         LOGGER.info(
-            "[%s] Running ETL for %s/%s between %s and %s (return_lag_days=%s)",
+            "[%s] Running ETL for %s/%s between %s and %s",
             label,
             args.country,
             args.fasin,
             start_str,
             end_str,
-            return_lag_days,
         )
         window_outputs = _run_window(
             window_label=label,
@@ -315,7 +309,6 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, Dict[str, 
             inputs=inputs,
             country=args.country,
             fasin=args.fasin,
-            return_lag_days=return_lag_days,
             adjust_date=adjust_date,
         )
         outputs[label] = window_outputs

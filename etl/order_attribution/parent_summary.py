@@ -39,7 +39,6 @@ def _filter_returns(
     country: str,
     fasin: str,
     window: Tuple,
-    return_lag_days: int,
 ):
     start, end = window
     start_d = parse_date(start)
@@ -53,8 +52,6 @@ def _filter_returns(
         review_date = parse_date(row.get("review_date")) if row.get("review_date") else purchase_date
         if review_date < purchase_date:
             continue
-        if (review_date - purchase_date).days > return_lag_days:
-            continue
         yield row
 
 
@@ -66,7 +63,6 @@ def calculate_parent_summary(
     fasin: str,
     window: Tuple,
     window_label: str,
-    return_lag_days: int,
 ) -> Dict:
     start_fmt, end_fmt = format_date(window[0]), format_date(window[1])
     filtered_snapshot = list(
@@ -78,7 +74,6 @@ def calculate_parent_summary(
             country=country,
             fasin=fasin,
             window=window,
-            return_lag_days=return_lag_days,
         )
     )
     total_units_sold = sum(normalize_number(row.get("units_sold")) for row in filtered_snapshot)
