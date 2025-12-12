@@ -4,160 +4,10 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
-      "review_date": "2025-05-24T12:38:11",
-      "purchase_date": "2025-05-20T02:02:42",
-      "return_deadline": "2025-07-04T02:02:42",
-      "review_id": "114-3572544-3505828",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-05-26T05:37:57",
-      "purchase_date": "2025-05-19T09:51:15",
-      "return_deadline": "2025-07-03T09:51:15",
-      "review_id": "112-1112133-7850630",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-05-27T18:47:52",
-      "purchase_date": "2025-05-18T09:21:50",
-      "return_deadline": "2025-07-02T09:21:50",
-      "review_id": "113-8562631-5030630",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D9BMW8FV",
-      "review_date": "2025-05-28T04:45:25",
-      "purchase_date": "2025-05-17T05:34:12",
-      "return_deadline": "2025-07-01T05:34:12",
-      "review_id": "114-3784501-8941066",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
-      "review_date": "2025-05-29T10:44:34",
-      "purchase_date": "2025-05-17T03:41:47",
-      "return_deadline": "2025-07-01T03:41:47",
-      "review_id": "112-1093499-3416217",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-05-29T11:32:34",
-      "purchase_date": "2025-05-18T07:42:43",
-      "return_deadline": "2025-07-02T07:42:43",
-      "review_id": "114-2748504-0711435",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
-      "review_date": "2025-05-29T04:27:59",
-      "purchase_date": "2025-05-21T05:24:07",
-      "return_deadline": "2025-07-05T05:24:07",
-      "review_id": "112-1803225-0082636",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-05-29T17:24:11",
-      "purchase_date": "2025-05-18T19:35:03",
-      "return_deadline": "2025-07-02T19:35:03",
-      "review_id": "114-6314442-7277035",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHJG2NJ",
-      "review_date": "2025-05-30T02:41:20",
-      "purchase_date": "2025-05-19T19:17:13",
-      "return_deadline": "2025-07-03T19:17:13",
-      "review_id": "114-4448825-7675408",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-05-30T19:43:01",
-      "purchase_date": "2025-05-20T09:40:43",
-      "return_deadline": "2025-07-04T09:40:43",
-      "review_id": "113-3927672-6169814",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0DFL3K8FK",
-      "review_date": "2025-05-31T08:15:29",
-      "purchase_date": "2025-05-20T20:36:16",
-      "return_deadline": "2025-07-04T20:36:16",
-      "review_id": "113-0106743-9514602",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
       "review_date": "2025-05-31T07:13:27",
       "purchase_date": "2025-05-25T07:31:41",
       "return_deadline": "2025-07-09T07:31:41",
       "review_id": "112-5980093-5480237",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-05-31T08:33:12",
-      "purchase_date": "2025-05-18T07:19:47",
-      "return_deadline": "2025-07-02T07:19:47",
-      "review_id": "112-1595094-2031414",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-05-31T21:09:50",
-      "purchase_date": "2025-05-20T06:12:47",
-      "return_deadline": "2025-07-04T06:12:47",
-      "review_id": "111-9581782-0992237",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D9BMW8FV",
-      "review_date": "2025-06-01T11:14:55",
-      "purchase_date": "2025-05-17T19:22:18",
-      "return_deadline": "2025-07-01T19:22:18",
-      "review_id": "112-0089461-4213000",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-06-02T10:12:34",
-      "purchase_date": "2025-05-18T23:15:54",
-      "return_deadline": "2025-07-02T23:15:54",
-      "review_id": "112-9177638-0438606",
       "quantity": 1
     },
     {
@@ -193,41 +43,11 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-06-04T01:56:50",
-      "purchase_date": "2025-05-21T02:31:09",
-      "return_deadline": "2025-07-05T02:31:09",
-      "review_id": "112-8836463-1708200",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
       "review_date": "2025-06-04T05:10:42",
       "purchase_date": "2025-05-26T17:19:41",
       "return_deadline": "2025-07-10T17:19:41",
       "review_id": "112-6928436-8429834",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D9BMW8FV",
-      "review_date": "2025-06-04T02:18:39",
-      "purchase_date": "2025-05-17T07:01:30",
-      "return_deadline": "2025-07-01T07:01:30",
-      "review_id": "114-9200661-1613806",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHJG2NJ",
-      "review_date": "2025-06-05T04:05:18",
-      "purchase_date": "2025-05-18T18:35:51",
-      "return_deadline": "2025-07-02T18:35:51",
-      "review_id": "114-6803332-4242631",
       "quantity": 1
     },
     {
@@ -258,16 +78,6 @@
       "purchase_date": "2025-05-26T16:09:57",
       "return_deadline": "2025-07-10T16:09:57",
       "review_id": "113-7179011-3287441",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHJG2NJ",
-      "review_date": "2025-06-06T18:14:15",
-      "purchase_date": "2025-05-18T05:41:03",
-      "return_deadline": "2025-07-02T05:41:03",
-      "review_id": "114-1981362-6745838",
       "quantity": 1
     },
     {
@@ -323,36 +133,6 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHJG2NJ",
-      "review_date": "2025-06-07T18:25:24",
-      "purchase_date": "2025-05-21T18:07:45",
-      "return_deadline": "2025-07-05T18:07:45",
-      "review_id": "114-7052192-5167417",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
-      "review_date": "2025-06-08T02:02:13",
-      "purchase_date": "2025-05-18T16:49:23",
-      "return_deadline": "2025-07-02T16:49:23",
-      "review_id": "113-1256163-1846661",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-06-09T07:07:49",
-      "purchase_date": "2025-05-21T09:50:38",
-      "return_deadline": "2025-07-05T09:50:38",
-      "review_id": "112-7305906-3032251",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
       "review_date": "2025-06-09T06:21:33",
       "purchase_date": "2025-05-28T12:06:20",
@@ -368,16 +148,6 @@
       "purchase_date": "2025-05-23T13:52:27",
       "return_deadline": "2025-07-07T13:52:27",
       "review_id": "112-6705293-7930629",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
-      "review_date": "2025-06-09T09:48:54",
-      "purchase_date": "2025-05-21T15:15:38",
-      "return_deadline": "2025-07-05T15:15:38",
-      "review_id": "114-2059140-9852211",
       "quantity": 1
     },
     {
@@ -454,16 +224,6 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
-      "review_date": "2025-06-10T10:39:38",
-      "purchase_date": "2025-05-18T11:47:59",
-      "return_deadline": "2025-07-02T11:47:59",
-      "review_id": "114-9627781-0809864",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
       "review_date": "2025-06-10T19:15:54",
       "purchase_date": "2025-05-26T08:01:20",
       "return_deadline": "2025-07-10T08:01:20",
@@ -518,16 +278,6 @@
       "purchase_date": "2025-06-02T15:14:03",
       "return_deadline": "2025-07-17T15:14:03",
       "review_id": "113-8380670-8380208",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHJG2NJ",
-      "review_date": "2025-06-11T17:04:48",
-      "purchase_date": "2025-05-21T12:49:25",
-      "return_deadline": "2025-07-05T12:49:25",
-      "review_id": "111-6354480-7617827",
       "quantity": 1
     },
     {
@@ -624,40 +374,10 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
-      "review_date": "2025-06-13T01:30:19",
-      "purchase_date": "2025-05-19T06:15:13",
-      "return_deadline": "2025-07-03T06:15:13",
-      "review_id": "114-7420545-3165032",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-06-13T19:30:03",
-      "purchase_date": "2025-05-19T17:47:36",
-      "return_deadline": "2025-07-03T17:47:36",
-      "review_id": "111-1698420-2074658",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
       "review_date": "2025-06-14T00:53:02",
       "purchase_date": "2025-05-25T13:53:27",
       "return_deadline": "2025-07-09T13:53:27",
       "review_id": "114-9578393-0344223",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D9BMW8FV",
-      "review_date": "2025-06-14T15:00:00",
-      "purchase_date": "2025-05-21T18:43:08",
-      "return_deadline": "2025-07-05T18:43:08",
-      "review_id": "112-7250605-2824208",
       "quantity": 1
     },
     {
@@ -703,16 +423,6 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
-      "review_date": "2025-06-14T20:26:15",
-      "purchase_date": "2025-05-17T20:23:47",
-      "return_deadline": "2025-07-01T20:23:47",
-      "review_id": "114-1047035-6190634",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
       "asin": "B0BGHJG2NJ",
       "review_date": "2025-06-14T22:29:36",
       "purchase_date": "2025-05-26T10:14:22",
@@ -748,16 +458,6 @@
       "purchase_date": "2025-05-28T14:20:34",
       "return_deadline": "2025-07-12T14:20:34",
       "review_id": "112-3927652-6426636",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
-      "review_date": "2025-06-15T15:50:19",
-      "purchase_date": "2025-05-21T08:08:40",
-      "return_deadline": "2025-07-05T08:08:40",
-      "review_id": "111-8285251-4357040",
       "quantity": 1
     },
     {
@@ -813,31 +513,11 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-06-16T13:16:20",
-      "purchase_date": "2025-05-17T19:32:41",
-      "return_deadline": "2025-07-01T19:32:41",
-      "review_id": "114-0928514-6692250",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
       "asin": "B0D9BMW8FV",
       "review_date": "2025-06-16T02:38:08",
       "purchase_date": "2025-05-22T21:00:17",
       "return_deadline": "2025-07-06T21:00:17",
       "review_id": "111-4640263-4810614",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-06-16T13:03:17",
-      "purchase_date": "2025-05-21T19:15:39",
-      "return_deadline": "2025-07-05T19:15:39",
-      "review_id": "113-0534893-6022659",
       "quantity": 1
     },
     {
@@ -868,16 +548,6 @@
       "purchase_date": "2025-05-23T05:20:52",
       "return_deadline": "2025-07-07T05:20:52",
       "review_id": "114-4397642-7842641",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
-      "review_date": "2025-06-16T12:50:20",
-      "purchase_date": "2025-05-19T21:02:36",
-      "return_deadline": "2025-07-03T21:02:36",
-      "review_id": "111-5383548-0255460",
       "quantity": 1
     },
     {
@@ -1208,16 +878,6 @@
       "purchase_date": "2025-06-05T10:30:03",
       "return_deadline": "2025-07-20T10:30:03",
       "review_id": "114-7277783-8302658",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
-      "review_date": "2025-06-23T23:15:32",
-      "purchase_date": "2025-05-19T17:58:16",
-      "return_deadline": "2025-07-03T17:58:16",
-      "review_id": "114-5868728-9166611",
       "quantity": 1
     },
     {
@@ -1858,16 +1518,6 @@
       "purchase_date": "2025-06-21T08:21:34",
       "return_deadline": "2025-08-05T08:21:34",
       "review_id": "114-4132182-7111409",
-      "quantity": 1
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0DR2V41P5",
-      "review_date": "2025-07-04T06:44:01",
-      "purchase_date": "2025-05-21T04:51:24",
-      "return_deadline": "2025-07-05T04:51:24",
-      "review_id": "113-8468510-6993801",
       "quantity": 1
     },
     {
@@ -10743,6 +10393,16 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
+      "asin": "B0D4QLYM4C",
+      "review_date": "2025-11-22T07:23:14",
+      "purchase_date": "2025-11-15T13:59:33",
+      "return_deadline": "2025-12-30T13:59:33",
+      "review_id": "113-5807064-0302647",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
       "asin": "B0D9BMW8FV",
       "review_date": "2025-11-22T13:48:50",
       "purchase_date": "2025-11-12T08:54:04",
@@ -10793,6 +10453,16 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-11-23T04:28:54",
+      "purchase_date": "2025-11-17T09:05:16",
+      "return_deadline": "2026-01-01T09:05:16",
+      "review_id": "112-1992951-9705806",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
       "review_date": "2025-11-23T08:04:02",
       "purchase_date": "2025-11-08T18:37:31",
@@ -10833,6 +10503,16 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
+      "asin": "B0D9BMW8FV",
+      "review_date": "2025-11-24T13:11:27",
+      "purchase_date": "2025-11-14T14:26:42",
+      "return_deadline": "2025-12-29T14:26:42",
+      "review_id": "111-6465963-2152227",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
       "review_date": "2025-11-24T09:36:33",
       "purchase_date": "2025-11-10T10:04:37",
@@ -10848,6 +10528,16 @@
       "purchase_date": "2025-11-10T16:21:19",
       "return_deadline": "2025-12-25T16:21:19",
       "review_id": "113-3878502-8389845",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-11-25T08:28:23",
+      "purchase_date": "2025-11-16T11:17:22",
+      "return_deadline": "2025-12-31T11:17:22",
+      "review_id": "112-8830021-5641842",
       "quantity": 1
     },
     {
@@ -10873,11 +10563,41 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
+      "asin": "B0D4QLYM4C",
+      "review_date": "2025-11-25T16:41:20",
+      "purchase_date": "2025-11-15T02:14:51",
+      "return_deadline": "2025-12-30T02:14:51",
+      "review_id": "112-0952474-4834618",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
       "review_date": "2025-11-26T06:30:09",
       "purchase_date": "2025-11-10T19:12:54",
       "return_deadline": "2025-12-25T19:12:54",
       "review_id": "114-3590683-6867460",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-11-26T21:12:14",
+      "purchase_date": "2025-11-14T17:20:35",
+      "return_deadline": "2025-12-29T17:20:35",
+      "review_id": "114-3462285-2413008",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHJG2NJ",
+      "review_date": "2025-11-26T16:01:02",
+      "purchase_date": "2025-11-15T18:12:05",
+      "return_deadline": "2025-12-30T18:12:05",
+      "review_id": "114-4056806-6431413",
       "quantity": 1
     },
     {
@@ -10903,6 +10623,36 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-11-27T06:31:36",
+      "purchase_date": "2025-11-14T12:59:24",
+      "return_deadline": "2025-12-29T12:59:24",
+      "review_id": "112-5465287-2943465",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-11-27T01:55:42",
+      "purchase_date": "2025-11-14T14:21:12",
+      "return_deadline": "2025-12-29T14:21:12",
+      "review_id": "111-7866028-4671405",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHJG2NJ",
+      "review_date": "2025-11-27T08:19:06",
+      "purchase_date": "2025-11-14T13:28:16",
+      "return_deadline": "2025-12-29T13:28:16",
+      "review_id": "111-0094875-1966642",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
       "review_date": "2025-11-27T04:16:32",
       "purchase_date": "2025-11-11T19:58:34",
@@ -10913,11 +10663,41 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-11-27T05:54:43",
+      "purchase_date": "2025-11-13T16:56:08",
+      "return_deadline": "2025-12-28T16:56:08",
+      "review_id": "113-1271395-2086659",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
       "asin": "B0D736K3NQ",
       "review_date": "2025-11-27T17:56:58",
       "purchase_date": "2025-09-23T19:51:53",
       "return_deadline": "2025-11-07T19:51:53",
       "review_id": "111-7600132-5252238",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0D9BMW8FV",
+      "review_date": "2025-11-28T13:49:09",
+      "purchase_date": "2025-11-16T20:14:18",
+      "return_deadline": "2025-12-31T20:14:18",
+      "review_id": "111-8356855-1525035",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHJG2NJ",
+      "review_date": "2025-11-29T12:43:08",
+      "purchase_date": "2025-11-17T04:01:45",
+      "return_deadline": "2026-01-01T04:01:45",
+      "review_id": "112-0149591-4113051",
       "quantity": 1
     },
     {
@@ -10948,6 +10728,26 @@
       "purchase_date": "2025-11-03T14:29:33",
       "return_deadline": "2025-12-18T14:29:33",
       "review_id": "111-8234460-8425048",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0D4QLYM4C",
+      "review_date": "2025-11-26T22:21:05",
+      "purchase_date": "2025-11-16T10:30:38",
+      "return_deadline": "2025-12-31T10:30:38",
+      "review_id": "113-2364637-4608215",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-11-29T21:22:50",
+      "purchase_date": "2025-11-17T12:33:27",
+      "return_deadline": "2026-01-01T12:33:27",
+      "review_id": "112-7318690-7839422",
       "quantity": 1
     },
     {
@@ -10993,6 +10793,56 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-12-02T21:42:05",
+      "purchase_date": "2025-11-15T18:35:17",
+      "return_deadline": "2025-12-30T18:35:17",
+      "review_id": "114-8070205-6545069",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHJG2NJ",
+      "review_date": "2025-12-03T01:01:58",
+      "purchase_date": "2025-11-13T17:35:42",
+      "return_deadline": "2025-12-28T17:35:42",
+      "review_id": "113-8034828-7528231",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-12-03T05:23:58",
+      "purchase_date": "2025-11-13T12:35:31",
+      "return_deadline": "2025-12-28T12:35:31",
+      "review_id": "111-9450423-7001826",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0DFL3K8FK",
+      "review_date": "2025-12-04T12:49:59",
+      "purchase_date": "2025-11-16T14:28:09",
+      "return_deadline": "2025-12-31T14:28:09",
+      "review_id": "111-9398919-9348267",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-12-04T14:10:28",
+      "purchase_date": "2025-11-17T22:45:20",
+      "return_deadline": "2026-01-01T22:45:20",
+      "review_id": "114-4077867-4723442",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
       "review_date": "2025-12-04T07:00:52",
       "purchase_date": "2025-11-08T07:54:45",
@@ -11023,6 +10873,16 @@
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
+      "asin": "B0BGHH2L23",
+      "review_date": "2025-12-04T11:53:30",
+      "purchase_date": "2025-11-13T13:59:12",
+      "return_deadline": "2025-12-28T13:59:12",
+      "review_id": "111-4779713-0569005",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
       "review_date": "2025-12-04T00:40:18",
       "purchase_date": "2025-11-10T21:47:27",
@@ -11038,6 +10898,26 @@
       "purchase_date": "2025-11-06T08:05:34",
       "return_deadline": "2025-12-21T08:05:34",
       "review_id": "114-6530875-6226642",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0D4QLYM4C",
+      "review_date": "2025-12-05T21:36:21",
+      "purchase_date": "2025-11-13T19:57:36",
+      "return_deadline": "2025-12-28T19:57:36",
+      "review_id": "113-0217776-8221853",
+      "quantity": 1
+    },
+    {
+      "country": "US",
+      "fasin": "B0BGHGXYJX",
+      "asin": "B0DFKWW9WY",
+      "review_date": "2025-12-06T18:37:40",
+      "purchase_date": "2025-11-13T18:56:13",
+      "return_deadline": "2025-12-28T18:56:13",
+      "review_id": "112-5100545-5595418",
       "quantity": 1
     },
     {

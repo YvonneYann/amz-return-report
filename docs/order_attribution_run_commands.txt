@@ -1,5 +1,8 @@
 ﻿# Order Attribution ETL Run Commands
 
+## Step 0: 进入项目目录
+cd C:\Users\MOREFINE\Desktop\amz-return-report
+
 ## Full pipeline (order attribution view)
 py -3 -m etl.order_attribution.pipeline
 
