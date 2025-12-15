@@ -1,0 +1,5 @@
+REM Step 0: 进入项目目录
+cd C:\Users\MOREFINE\Desktop\amz-return-report
+
+REM Step ALL: 一次性串行跑完全部阶段
+py -3 -m etl.purchase_window.pipeline
