@@ -8,8 +8,9 @@ from typing import Tuple
 from ..shared.calculator import format_date
 from ..shared.utils import build_single_window_parser, resolve_single_window
 from .config import PipelineConfig, build_config
+from ..shared.config_base import BASE_DIR
 
-DEFAULT_PARAMS_PATH = Path(__file__).resolve().parents[2] / "config" / "purchase_window_run_params.json"
+DEFAULT_PARAMS_PATH = BASE_DIR / "config" / "return_window_run_params.json"
 DEFAULT_WINDOW_DAYS = PipelineConfig().default_window_days
 
 
@@ -17,8 +18,8 @@ def build_stage_parser(description: str) -> argparse.ArgumentParser:
     return build_single_window_parser(
         description=description,
         default_params_path=DEFAULT_PARAMS_PATH,
-        data_help="Optional override for template/purchase_window/input directory",
-        output_help="Optional override for template/purchase_window/output directory",
+        data_help="Optional override for template/return_window/input directory",
+        output_help="Optional override for template/return_window/output directory",
     )
 
 

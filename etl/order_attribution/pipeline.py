@@ -1,16 +1,16 @@
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 from datetime import date as dt_date
 from pathlib import Path
 from typing import Dict, Iterable, List, Tuple
 
-from ..calculator import format_date, parse_date
-from .doris_client import DorisClient
+from ..shared.calculator import format_date, parse_date
+from ..shared.utils import write_table
+from ..shared.doris_client import DorisClient
 from .asin_structure import build_asin_structure
-from .cli_utils import build_stage_parser, format_window, resolve_runtime
+from .cli_utils import build_stage_parser, resolve_runtime
 from .config import PipelineConfig
 from .parent_summary import calculate_parent_summary
 from .problem_asin_listing import build_problem_asin_listing
@@ -18,6 +18,7 @@ from .problem_reasons import build_problem_reasons
 from .reason_explanations import build_reason_explanations
 
 LOGGER = logging.getLogger("etl.order_attribution.pipeline")
+_write_table = write_table  # backward compatibility for run_* modules
 
 INPUT_TABLES = [
     "view_return_snapshot",
@@ -43,18 +44,6 @@ def _read_table(path: Path) -> List[Dict]:
     if isinstance(payload, list):
         return payload
     return []
-
-
-def _write_table(path: Path, table_name: str, records: Iterable[Dict], *, key_override: str | None = None) -> Path:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    # Allow callers to pass a single dict (common for summary tables) or any iterable of dicts
-    if isinstance(records, dict):
-        records = [records]
-    payload_key = key_override or table_name
-    payload = {payload_key: list(records)}
-    with path.open("w", encoding="utf-8") as handle:
-        json.dump(payload, handle, ensure_ascii=False, indent=2)
-    return path
 
 
 def _load_inputs(config: PipelineConfig) -> Dict[str, List[Dict]]:
@@ -152,8 +141,8 @@ def _fetch_inputs_from_doris(
     )
     with DorisClient(
         database=config.database,
-        data_dir=config.paths.data_dir,
-        output_dir=config.paths.output_dir,
+        paths=config.paths,
+        date_mode="purchase",
     ) as client:
         snapshot_rows = client.fetch_view_return_snapshot(
             country=country,
@@ -293,7 +282,7 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, Dict[str, 
     )
     outputs: Dict[str, Dict[str, List[Dict] | Dict]] = {}
     for label, window in windows.items():
-        start_str, end_str = format_window(window)
+        start_str, end_str = format_date(window[0]), format_date(window[1])
         LOGGER.info(
             "[%s] Running ETL for %s/%s between %s and %s",
             label,
@@ -316,7 +305,7 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, Dict[str, 
             filename = f"{table_name}_{label}.json"
             output_path = config.paths.output_dir / filename
             payload_key = f"{table_name}_{label}"
-            _write_table(output_path, table_name, payload, key_override=payload_key)
+            write_table(output_path, table_name, payload, key_override=payload_key)
             LOGGER.info("[%s] Wrote %s to %s", label, table_name, output_path)
     return outputs
 

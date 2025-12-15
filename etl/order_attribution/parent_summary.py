@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, Iterable, Tuple
 
-from ..calculator import calc_rate, format_date, parse_date, round_float
+from ..shared.calculator import calc_rate, format_date, parse_date, round_float
 
 
 def normalize_number(value) -> float:

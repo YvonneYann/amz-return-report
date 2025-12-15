@@ -1,2 +1,1 @@
-"""Single-window purchase-date attribution view pipeline."""
-
+"""ETL purchase_window view."""

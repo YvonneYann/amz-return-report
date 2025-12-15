@@ -4,21 +4,22 @@ import argparse
 import logging
 from typing import Dict
 
+from ..shared.utils import write_table, format_window
 from .asin_structure import build_asin_structure
-from .cli_utils import build_stage_parser, format_window, resolve_runtime
-from .doris_client import DorisClient
+from .cli_utils import build_stage_parser, resolve_runtime
+from ..shared.doris_client import DorisClient
 from .parent_summary import calculate_parent_summary
 from .problem_asin_listing import build_problem_asin_listing
 from .problem_reasons import build_problem_reasons
 from .reason_explanations import build_reason_explanations
 
-LOGGER = logging.getLogger("etl.pipeline")
+LOGGER = logging.getLogger("etl.return_window.pipeline")
+WINDOW_LABEL = "return_window"
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = build_stage_parser("Amazon return analysis ETL pipeline")
     return parser.parse_args(argv)
-
 
 
 def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
@@ -33,7 +34,7 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
 
     start_str, end_str = format_window(start_date, end_date)
 
-    with DorisClient(config.database, config.paths) as client:
+    with DorisClient(database=config.database, paths=config.paths, date_mode="review") as client:
         snapshot_rows = client.fetch_view_return_snapshot(
             country=args.country,
             fasin=args.fasin,
@@ -108,8 +109,11 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
             "problem_asin_listing": problem_asin_listing,
         }
         for table_name, payload in outputs.items():
-            output_path = client.write_json(table_name, payload)
-            LOGGER.info("Wrote %s to %s", table_name, output_path)
+            filename = f"{table_name}_{WINDOW_LABEL}.json"
+            output_path = config.paths.output_dir / filename
+            payload_key = f"{table_name}_{WINDOW_LABEL}"
+            write_table(output_path, table_name, payload, key_override=payload_key)
+            LOGGER.info("Wrote %s to %s", payload_key, output_path)
 
     return outputs
 
@@ -120,4 +124,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -78,3 +78,4 @@ def round_float(value: float, digits: int = 4) -> float:
 def daterange(days: int) -> List[date]:
     today = date.today()
     return [today - timedelta(days=offset) for offset in range(days)]
+

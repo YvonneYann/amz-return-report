@@ -6,7 +6,8 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
-from ..calculator import format_date, parse_date
+from ..shared.calculator import format_date, parse_date
+from ..shared.utils import coerce_int, load_params
 from .config import PipelineConfig, build_config
 
 DEFAULT_PARAMS_PATH = Path(__file__).resolve().parents[2] / "config" / "order_attribution_run_params.json"
@@ -33,23 +34,6 @@ def build_stage_parser(description: str) -> argparse.ArgumentParser:
     )
     parser.add_argument("--log-level", default="INFO", help="Logging level")
     return parser
-
-
-def _load_params(path: Path) -> Dict[str, Any]:
-    if not path.exists():
-        return {}
-    # utf-8-sig allows reading files that include a BOM without raising JSONDecodeError
-    with path.open("r", encoding="utf-8-sig") as handle:
-        return json.load(handle)
-
-
-def _coerce_int(value: Any) -> int | None:
-    if value is None:
-        return None
-    try:
-        return int(value)
-    except (TypeError, ValueError):
-        return None
 
 
 def _maybe_date(value: Any) -> date | None:
@@ -102,7 +86,7 @@ def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str,
     output_dir = Path(args.output_dir).resolve() if args.output_dir else None
     env_file = Path(args.env_file).resolve() if args.env_file else None
     params_path = Path(args.params_file).resolve() if args.params_file else DEFAULT_PARAMS_PATH
-    params = _load_params(params_path)
+    params = load_params(params_path)
 
     args.country = args.country or params.get("country")
     args.fasin = args.fasin or params.get("fasin")
@@ -114,7 +98,7 @@ def resolve_runtime(args: argparse.Namespace) -> Tuple[PipelineConfig, Dict[str,
         raise ValueError("adjust_date is required for order attribution view")
     adjust_date = parse_date(adjust_value)
 
-    window_days = args.window_days or _coerce_int(params.get("window_days")) or 90
+    window_days = args.window_days or coerce_int(params.get("window_days")) or 90
 
     thresholds_override = _normalize_thresholds(params.get("thresholds"))
     if args.thresholds_json:

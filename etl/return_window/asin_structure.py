@@ -1,14 +1,14 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from typing import Dict, Iterable, List
 
-from .calculator import calc_rate, calc_share, format_date, round_float
-from .config import ThresholdConfig
+from ..shared.calculator import calc_rate, calc_share, format_date, round_float
+from ..shared.config_base import ThresholdConfig
 from .parent_summary import filter_snapshot, normalize_number
 
 PROBLEM_CLASS_LABELS = {
-    "A": "\u4e3b\u6218\u573a\u6b3e",
-    "B": "\u9ad8\u9000\u8d27\u95ee\u9898\u6b3e",
+    "A": "主战场款",
+    "B": "高退货问题款",
 }
 
 

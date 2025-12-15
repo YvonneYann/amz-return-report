@@ -1,5 +1,5 @@
 {
-  "problem_asin_reasons": [
+  "problem_asin_reasons_return_window": [
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
@@ -9,8 +9,8 @@
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
       "total_events": 167,
-      "units_returned": 267,
-      "text_coverage": 0.6255,
+      "units_returned": 269,
+      "text_coverage": 0.6208,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
@@ -80,8 +80,8 @@
       "problem_class": "B",
       "problem_class_label_cn": "高退货问题款",
       "total_events": 21,
-      "units_returned": 41,
-      "text_coverage": 0.5122,
+      "units_returned": 42,
+      "text_coverage": 0.5,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",

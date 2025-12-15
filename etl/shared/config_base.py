@@ -1,14 +1,11 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-
-BASE_DIR = Path(__file__).resolve().parents[1]
+BASE_DIR = Path(__file__).resolve().parents[2]
 DEFAULT_ENV_PATH = BASE_DIR / "config" / "environment.yaml"
-DEFAULT_DATA_DIR = BASE_DIR / "template" / "input"
-DEFAULT_OUTPUT_DIR = BASE_DIR / "template" / "output"
 
 
 @dataclass
@@ -38,20 +35,6 @@ class ThresholdConfig:
     text_sample_medium: int = 15
     text_coverage_high: float = 0.10
     text_coverage_medium: float = 0.05
-
-
-@dataclass
-class PathConfig:
-    data_dir: Path = DEFAULT_DATA_DIR
-    output_dir: Path = DEFAULT_OUTPUT_DIR
-
-
-@dataclass
-class PipelineConfig:
-    database: DatabaseConfig = field(default_factory=DatabaseConfig)
-    thresholds: ThresholdConfig = field(default_factory=ThresholdConfig)
-    paths: PathConfig = field(default_factory=PathConfig)
-    default_window_days: int = 30
 
 
 def _convert_value(raw: str) -> Any:
@@ -115,14 +98,15 @@ def load_database_config(environment_path: Optional[Path] = None) -> DatabaseCon
     )
 
 
-def build_config(
-    data_dir: Optional[Path] = None,
-    output_dir: Optional[Path] = None,
-    environment_path: Optional[Path] = None,
-) -> PipelineConfig:
-    db_conf = load_database_config(environment_path)
-    paths = PathConfig(
-        data_dir=data_dir or DEFAULT_DATA_DIR,
-        output_dir=output_dir or DEFAULT_OUTPUT_DIR,
-    )
-    return PipelineConfig(database=db_conf, paths=paths)
+def apply_threshold_overrides(thresholds: ThresholdConfig, overrides: Dict[str, Any]) -> ThresholdConfig:
+    """Apply optional overrides to the shared threshold config."""
+    for key, value in overrides.items():
+        if value is None or not hasattr(thresholds, key):
+            continue
+        current = getattr(thresholds, key)
+        try:
+            coerced = type(current)(value)
+        except Exception:
+            coerced = value
+        setattr(thresholds, key, coerced)
+    return thresholds

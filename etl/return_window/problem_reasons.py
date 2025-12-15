@@ -1,10 +1,10 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from collections import defaultdict
 from typing import Dict, Iterable, List, Set
 
-from .calculator import calc_share, format_date, parse_date, round_float
-from .config import ThresholdConfig
+from ..shared.calculator import calc_share, format_date, parse_date, round_float
+from ..shared.config_base import ThresholdConfig
 
 
 def _build_tag_lookup(dim_rows: Iterable[Dict]) -> Dict[str, str]:

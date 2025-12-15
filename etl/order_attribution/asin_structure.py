@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, Iterable, List, Tuple
 
-from ..calculator import calc_rate, calc_share, format_date, parse_date, round_float
-from ..config import ThresholdConfig
+from ..shared.calculator import calc_rate, calc_share, format_date, parse_date, round_float
+from ..shared.config_base import ThresholdConfig
 from .parent_summary import normalize_number
 
 PROBLEM_CLASS_LABELS = {
