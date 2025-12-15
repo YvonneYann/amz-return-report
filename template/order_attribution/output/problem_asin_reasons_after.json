@@ -10,8 +10,8 @@
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
       "total_events": 165,
-      "units_returned": 239,
-      "text_coverage": 0.6904,
+      "units_returned": 241,
+      "text_coverage": 0.6846,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
@@ -50,8 +50,8 @@
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
       "total_events": 39,
-      "units_returned": 74,
-      "text_coverage": 0.527,
+      "units_returned": 75,
+      "text_coverage": 0.52,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",

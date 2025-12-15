@@ -8,10 +8,10 @@
       "start_date": "2025-08-20",
       "end_date": "2025-11-17",
       "units_sold": 2434,
-      "units_returned": 239,
-      "return_rate": 0.0982,
+      "units_returned": 241,
+      "return_rate": 0.099,
       "sales_share": 0.5373,
-      "returns_share": 0.4938,
+      "returns_share": 0.4949,
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
       "high_return_watchlist": false
@@ -24,10 +24,10 @@
       "start_date": "2025-08-20",
       "end_date": "2025-11-17",
       "units_sold": 825,
-      "units_returned": 74,
-      "return_rate": 0.0897,
+      "units_returned": 75,
+      "return_rate": 0.0909,
       "sales_share": 0.1821,
-      "returns_share": 0.1529,
+      "returns_share": 0.154,
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
       "high_return_watchlist": false
@@ -43,7 +43,7 @@
       "units_returned": 41,
       "return_rate": 0.1258,
       "sales_share": 0.072,
-      "returns_share": 0.0847,
+      "returns_share": 0.0842,
       "problem_class": null,
       "problem_class_label_cn": "",
       "high_return_watchlist": false
@@ -59,7 +59,7 @@
       "units_returned": 41,
       "return_rate": 0.1673,
       "sales_share": 0.0541,
-      "returns_share": 0.0847,
+      "returns_share": 0.0842,
       "problem_class": "B",
       "problem_class_label_cn": "高退货问题款",
       "high_return_watchlist": false
@@ -75,7 +75,7 @@
       "units_returned": 25,
       "return_rate": 0.0958,
       "sales_share": 0.0576,
-      "returns_share": 0.0517,
+      "returns_share": 0.0513,
       "problem_class": null,
       "problem_class_label_cn": "",
       "high_return_watchlist": false
@@ -91,7 +91,7 @@
       "units_returned": 13,
       "return_rate": 0.2031,
       "sales_share": 0.0141,
-      "returns_share": 0.0269,
+      "returns_share": 0.0267,
       "problem_class": null,
       "problem_class_label_cn": "",
       "high_return_watchlist": true
@@ -107,7 +107,7 @@
       "units_returned": 13,
       "return_rate": 0.1477,
       "sales_share": 0.0194,
-      "returns_share": 0.0269,
+      "returns_share": 0.0267,
       "problem_class": null,
       "problem_class_label_cn": "",
       "high_return_watchlist": true
@@ -123,7 +123,7 @@
       "units_returned": 11,
       "return_rate": 0.1447,
       "sales_share": 0.0168,
-      "returns_share": 0.0227,
+      "returns_share": 0.0226,
       "problem_class": null,
       "problem_class_label_cn": "",
       "high_return_watchlist": true
@@ -139,7 +139,7 @@
       "units_returned": 10,
       "return_rate": 0.1111,
       "sales_share": 0.0199,
-      "returns_share": 0.0207,
+      "returns_share": 0.0205,
       "problem_class": null,
       "problem_class_label_cn": "",
       "high_return_watchlist": false
@@ -155,7 +155,7 @@
       "units_returned": 8,
       "return_rate": 0.1379,
       "sales_share": 0.0128,
-      "returns_share": 0.0165,
+      "returns_share": 0.0164,
       "problem_class": null,
       "problem_class_label_cn": "",
       "high_return_watchlist": false
