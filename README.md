@@ -75,3 +75,9 @@
 
 - [退货发生视角](docs/return_window_prd.md)：基于退货发生日（snapshot_date / review_date）的分析框架，先算父体概览再拆子 ASIN 结构并识别问题 ASIN，最后输出核心退货原因标签，统一生成 JSON 供 BI/LLM 消费。
 - [订单归因视角](docs/order_attribution_prd.md)：以下单日做归因窗口，补充 purchase_date/return_deadline 等字段，提供订单侧销量基线 + 含下单日的退货事件 + 标签事实，便于对比调整前后、解决30天退货滞后带来的归因偏差。
+- [ETL 架构](docs/etl_architecture.md)：
+  - 入口命令：
+    - 退货视角：`py -3 -m etl.return_window.pipeline ...`
+    - 订单归因：`py -3 -m etl.order_attribution.pipeline ...`
+    - 单窗归因：`py -3 -m etl.purchase_window.pipeline ...`
+  - 输出文件名带各自后缀区分视角（`_return_window`、`_purchase_window`，或 `_order_attribution` 的窗口标签）。
