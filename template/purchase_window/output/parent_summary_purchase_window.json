@@ -4,11 +4,11 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "window_label": "purchase_window",
-      "start_date": "2025-09-16",
-      "end_date": "2025-12-14",
-      "units_sold": 4245,
-      "units_returned": 366,
-      "return_rate": 0.0862
+      "start_date": "2025-09-17",
+      "end_date": "2025-12-15",
+      "units_sold": 4212,
+      "units_returned": 361,
+      "return_rate": 0.0857
     }
   ]
 }

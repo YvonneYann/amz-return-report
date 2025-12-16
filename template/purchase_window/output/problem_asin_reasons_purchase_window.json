@@ -5,38 +5,38 @@
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
       "window_label": "purchase_window",
-      "start_date": "2025-09-16",
-      "end_date": "2025-12-14",
+      "start_date": "2025-09-17",
+      "end_date": "2025-12-15",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 146,
-      "units_returned": 201,
-      "text_coverage": 0.7264,
+      "total_events": 143,
+      "units_returned": 200,
+      "text_coverage": 0.715,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 70,
-          "event_coverage": 0.4795,
+          "event_count": 68,
+          "event_coverage": 0.4755,
           "is_primary": true
         },
         {
           "tag_code": "NO_MATCH",
           "tag_name_cn": "无合适标签",
-          "event_count": 39,
-          "event_coverage": 0.2671,
+          "event_count": 38,
+          "event_coverage": 0.2657,
           "is_primary": false
         },
         {
           "tag_code": "DOA_DAMAGED",
           "tag_name_cn": "损坏到货（DOA/受损）",
           "event_count": 12,
-          "event_coverage": 0.0822,
+          "event_coverage": 0.0839,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8288,
+      "coverage_reached": 0.8252,
       "reason_confidence_level": "high",
       "can_deep_dive_reasons": true
     },
@@ -45,31 +45,31 @@
       "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
       "window_label": "purchase_window",
-      "start_date": "2025-09-16",
-      "end_date": "2025-12-14",
+      "start_date": "2025-09-17",
+      "end_date": "2025-12-15",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 26,
-      "units_returned": 46,
-      "text_coverage": 0.5652,
+      "total_events": 25,
+      "units_returned": 45,
+      "text_coverage": 0.5556,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
           "event_count": 17,
-          "event_coverage": 0.6538,
+          "event_coverage": 0.68,
           "is_primary": true
         },
         {
           "tag_code": "PAGE_MISSING",
           "tag_name_cn": "页面信息/选型指引不清",
           "event_count": 4,
-          "event_coverage": 0.1538,
+          "event_coverage": 0.16,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8077,
+      "coverage_reached": 0.84,
       "reason_confidence_level": "medium",
       "can_deep_dive_reasons": true
     }

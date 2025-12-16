@@ -4,38 +4,38 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
-      "start_date": "2025-09-16",
-      "end_date": "2025-12-14",
+      "start_date": "2025-09-17",
+      "end_date": "2025-12-15",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 167,
+      "total_events": 162,
       "units_returned": 269,
-      "text_coverage": 0.6208,
+      "text_coverage": 0.6022,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 79,
-          "event_coverage": 0.4731,
+          "event_count": 76,
+          "event_coverage": 0.4691,
           "is_primary": true
         },
         {
           "tag_code": "NO_MATCH",
           "tag_name_cn": "无合适标签",
-          "event_count": 47,
-          "event_coverage": 0.2814,
+          "event_count": 46,
+          "event_coverage": 0.284,
           "is_primary": false
         },
         {
           "tag_code": "DOA_DAMAGED",
           "tag_name_cn": "损坏到货（DOA/受损）",
           "event_count": 13,
-          "event_coverage": 0.0778,
+          "event_coverage": 0.0802,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8323,
+      "coverage_reached": 0.8333,
       "reason_confidence_level": "high",
       "can_deep_dive_reasons": true
     },
@@ -43,31 +43,31 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
-      "start_date": "2025-09-16",
-      "end_date": "2025-12-14",
+      "start_date": "2025-09-17",
+      "end_date": "2025-12-15",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 32,
+      "total_events": 30,
       "units_returned": 80,
-      "text_coverage": 0.4,
+      "text_coverage": 0.375,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 23,
-          "event_coverage": 0.7188,
+          "event_count": 21,
+          "event_coverage": 0.7,
           "is_primary": true
         },
         {
           "tag_code": "PAGE_MISSING",
           "tag_name_cn": "页面信息/选型指引不清",
           "event_count": 4,
-          "event_coverage": 0.125,
+          "event_coverage": 0.1333,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8438,
+      "coverage_reached": 0.8333,
       "reason_confidence_level": "high",
       "can_deep_dive_reasons": true
     },
@@ -75,13 +75,13 @@
       "country": "US",
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHJG2NJ",
-      "start_date": "2025-09-16",
-      "end_date": "2025-12-14",
+      "start_date": "2025-09-17",
+      "end_date": "2025-12-15",
       "problem_class": "B",
       "problem_class_label_cn": "高退货问题款",
       "total_events": 21,
-      "units_returned": 42,
-      "text_coverage": 0.5,
+      "units_returned": 38,
+      "text_coverage": 0.5526,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
