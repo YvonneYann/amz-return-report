@@ -2,75 +2,42 @@
   "problem_asin_reasons_purchase_window": [
     {
       "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHH2L23",
+      "fasin": "B07YS9F24K",
+      "asin": "B092QN244N",
       "window_label": "purchase_window",
-      "start_date": "2025-09-17",
-      "end_date": "2025-12-15",
+      "start_date": "2025-08-19",
+      "end_date": "2025-12-16",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 143,
-      "units_returned": 200,
-      "text_coverage": 0.715,
+      "total_events": 230,
+      "units_returned": 461,
+      "text_coverage": 0.4989,
       "core_reasons": [
+        {
+          "tag_code": "CAPACITY_EFF",
+          "tag_name_cn": "容量/装载空间不足（装不下食材）",
+          "event_count": 73,
+          "event_coverage": 0.3174,
+          "is_primary": true
+        },
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 68,
-          "event_coverage": 0.4755,
-          "is_primary": true
+          "event_count": 70,
+          "event_coverage": 0.3043,
+          "is_primary": false
         },
         {
           "tag_code": "NO_MATCH",
           "tag_name_cn": "无合适标签",
-          "event_count": 38,
-          "event_coverage": 0.2657,
-          "is_primary": false
-        },
-        {
-          "tag_code": "DOA_DAMAGED",
-          "tag_name_cn": "损坏到货（DOA/受损）",
-          "event_count": 12,
-          "event_coverage": 0.0839,
+          "event_count": 57,
+          "event_coverage": 0.2478,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8252,
+      "coverage_reached": 0.8696,
       "reason_confidence_level": "high",
-      "can_deep_dive_reasons": true
-    },
-    {
-      "country": "US",
-      "fasin": "B0BGHGXYJX",
-      "asin": "B0D4QLYM4C",
-      "window_label": "purchase_window",
-      "start_date": "2025-09-17",
-      "end_date": "2025-12-15",
-      "problem_class": "A",
-      "problem_class_label_cn": "主战场款",
-      "total_events": 25,
-      "units_returned": 45,
-      "text_coverage": 0.5556,
-      "core_reasons": [
-        {
-          "tag_code": "FIT_COMPAT",
-          "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 17,
-          "event_coverage": 0.68,
-          "is_primary": true
-        },
-        {
-          "tag_code": "PAGE_MISSING",
-          "tag_name_cn": "页面信息/选型指引不清",
-          "event_count": 4,
-          "event_coverage": 0.16,
-          "is_primary": false
-        }
-      ],
-      "coverage_threshold": 0.8,
-      "coverage_reached": 0.84,
-      "reason_confidence_level": "medium",
       "can_deep_dive_reasons": true
     }
   ]

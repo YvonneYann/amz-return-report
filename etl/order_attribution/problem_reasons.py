@@ -7,14 +7,15 @@ from ..shared.calculator import calc_share, format_date, parse_date, round_float
 from ..shared.config_base import ThresholdConfig
 
 
-def _build_tag_lookup(dim_rows: Iterable[Dict]) -> Dict[str, str]:
+def _build_tag_lookup_from_facts(fact_rows: Iterable[Dict]) -> Dict[str, str]:
+    """Use fact rows to map tag_code -> tag_name_cn (维表不再依赖)."""
     lookup: Dict[str, str] = {}
-    for row in dim_rows:
+    for row in fact_rows:
         code = row.get("tag_code")
         if not code:
             continue
+        name = row.get("tag_name_cn") or row.get("tag_name") or ""
         if code not in lookup:
-            name = row.get("tag_name_cn") or row.get("tag_name") or ""
             lookup[code] = str(name)
     return lookup
 
@@ -105,7 +106,6 @@ def build_problem_reasons(
     *,
     asin_structure: Iterable[Dict],
     fact_rows: Iterable[Dict],
-    tag_dimension: Iterable[Dict],
     thresholds: ThresholdConfig,
     country: str,
     fasin: str,
@@ -121,7 +121,7 @@ def build_problem_reasons(
     if not asin_whitelist:
         return []
 
-    tag_lookup = _build_tag_lookup(tag_dimension)
+    tag_lookup = _build_tag_lookup_from_facts(fact_rows)
     filtered_rows = list(
         _filter_fact_rows(
             fact_rows,

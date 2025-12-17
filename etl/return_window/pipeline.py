@@ -78,11 +78,9 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
             start_date=start_str,
             end_date=end_str,
         )
-        tag_dim = client.fetch_return_dim_tag()
         problem_reasons = build_problem_reasons(
             asin_structure=asin_structure,
             fact_rows=fact_rows,
-            tag_dimension=tag_dim,
             thresholds=config.thresholds,
             country=args.country,
             fasin=args.fasin,

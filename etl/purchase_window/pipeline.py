@@ -66,7 +66,6 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
             start_date=start_str,
             end_date=end_str,
         )
-        tag_dim_rows = client.fetch_return_dim_tag()
         bi_snapshot_rows = client.fetch_view_bi_amz_asin_product_snapshot(
             country=args.country,
             fasin=args.fasin,
@@ -97,7 +96,6 @@ def run_pipeline(args: argparse.Namespace | None = None) -> Dict[str, object]:
     problem_reasons = build_problem_reasons(
         asin_structure=asin_structure,
         fact_rows=fact_rows,
-        tag_dimension=tag_dim_rows,
         thresholds=config.thresholds,
         country=args.country,
         fasin=args.fasin,

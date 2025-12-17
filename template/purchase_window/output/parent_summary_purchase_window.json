@@ -2,13 +2,13 @@
   "parent_summary_purchase_window": [
     {
       "country": "US",
-      "fasin": "B0BGHGXYJX",
+      "fasin": "B07YS9F24K",
       "window_label": "purchase_window",
-      "start_date": "2025-09-17",
-      "end_date": "2025-12-15",
-      "units_sold": 4212,
-      "units_returned": 361,
-      "return_rate": 0.0857
+      "start_date": "2025-08-19",
+      "end_date": "2025-12-16",
+      "units_sold": 12378,
+      "units_returned": 669,
+      "return_rate": 0.054
     }
   ]
 }

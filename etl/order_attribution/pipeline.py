@@ -24,7 +24,6 @@ INPUT_TABLES = [
     "view_return_snapshot",
     "view_return_orders_snapshot",
     "view_return_fact_details",
-    "return_dim_tag",
     "view_bi_amz_asin_product_snapshot",
 ]
 
@@ -162,7 +161,6 @@ def _fetch_inputs_from_doris(
             start_date=start_str,
             end_date=end_str,
         )
-        tag_dim_rows = client.fetch_return_dim_tag()
         bi_snapshot_rows = client.fetch_view_bi_amz_asin_product_snapshot(
             country=country,
             fasin=fasin,
@@ -175,7 +173,6 @@ def _fetch_inputs_from_doris(
         "view_return_snapshot": snapshot_rows,
         "view_return_orders_snapshot": order_rows,
         "view_return_fact_details": fact_rows,
-        "return_dim_tag": tag_dim_rows,
         "view_bi_amz_asin_product_snapshot": bi_snapshot_rows,
     }
 
@@ -204,7 +201,6 @@ def _run_window(
     snapshot_rows = inputs.get("view_return_snapshot", [])
     return_orders = inputs.get("view_return_orders_snapshot", [])
     fact_rows = inputs.get("view_return_fact_details", [])
-    tag_dim = inputs.get("return_dim_tag", [])
     bi_snapshot_rows_all = inputs.get("view_bi_amz_asin_product_snapshot", [])
     bi_snapshot_rows = _select_bi_snapshot_rows_for_window(
         bi_snapshot_rows_all,
@@ -236,7 +232,6 @@ def _run_window(
     problem_reasons = build_problem_reasons(
         asin_structure=asin_structure,
         fact_rows=fact_rows,
-        tag_dimension=tag_dim,
         thresholds=config.thresholds,
         country=country,
         fasin=fasin,
