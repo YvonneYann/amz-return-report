@@ -1,7 +1,7 @@
 {
   "country": "US",
   "fasin": "B07YS9F24K",
-  "window_days": 120,
+  "window_days": 90,
   "biz_date": "yesterday",
   "start_date": null,
   "end_date": null

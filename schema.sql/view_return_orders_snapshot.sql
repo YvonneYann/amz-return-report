@@ -5,4 +5,4 @@ order_id review_id,quantity
 from HYY_DW_MYSQL.hyy.jj_return_orders a
 left join basic_account b on a.market_id = b.gg_marketid
 left join hyy.view_asin_mid_new_info c on a.asin = c.asin and b.country = c.marketplace_id
-where purchase_date >= CURDATE() -interval 365 day;
+where purchase_date >= CURDATE() -interval 180 day;

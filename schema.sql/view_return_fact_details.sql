@@ -29,7 +29,7 @@ WHERE a.order_id = b.review_id and a.comment = b.review_en))))
 select country,fasin,asin,review_date,purchase_date,return_deadline,fact.* 
 from hyy.return_fact_details fact
 left join raw on raw.review_id = fact.review_id
-where purchase_date >= CURDATE() -interval 365 day;
+where purchase_date >= CURDATE() -interval 180 day;
 -- review_date >= CURDATE() -interval 365 day;
 -- and country = 'US' and fasin = 'B0BGHGXYJX'
 -- order by review_date desc;
