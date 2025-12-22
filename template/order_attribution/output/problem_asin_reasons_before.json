@@ -5,38 +5,38 @@
       "fasin": "B0BGHGXYJX",
       "asin": "B0BGHH2L23",
       "window_label": "before",
-      "start_date": "2025-05-22",
-      "end_date": "2025-08-19",
+      "start_date": "2025-10-01",
+      "end_date": "2025-10-30",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 151,
-      "units_returned": 270,
-      "text_coverage": 0.5593,
+      "total_events": 61,
+      "units_returned": 91,
+      "text_coverage": 0.6703,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 87,
-          "event_coverage": 0.5762,
+          "event_count": 31,
+          "event_coverage": 0.5082,
           "is_primary": true
         },
         {
           "tag_code": "NO_MATCH",
           "tag_name_cn": "无合适标签",
-          "event_count": 24,
-          "event_coverage": 0.1589,
+          "event_count": 16,
+          "event_coverage": 0.2623,
           "is_primary": false
         },
         {
           "tag_code": "DOA_DAMAGED",
           "tag_name_cn": "损坏到货（DOA/受损）",
-          "event_count": 14,
-          "event_coverage": 0.0927,
+          "event_count": 5,
+          "event_coverage": 0.082,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8278,
+      "coverage_reached": 0.8525,
       "reason_confidence_level": "high",
       "can_deep_dive_reasons": true
     },
@@ -45,66 +45,66 @@
       "fasin": "B0BGHGXYJX",
       "asin": "B0D4QLYM4C",
       "window_label": "before",
-      "start_date": "2025-05-22",
-      "end_date": "2025-08-19",
+      "start_date": "2025-10-01",
+      "end_date": "2025-10-30",
       "problem_class": "A",
       "problem_class_label_cn": "主战场款",
-      "total_events": 80,
-      "units_returned": 145,
-      "text_coverage": 0.5517,
+      "total_events": 6,
+      "units_returned": 17,
+      "text_coverage": 0.3529,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 51,
-          "event_coverage": 0.6375,
+          "event_count": 5,
+          "event_coverage": 0.8333,
           "is_primary": true
         },
         {
           "tag_code": "DOA_DAMAGED",
           "tag_name_cn": "损坏到货（DOA/受损）",
-          "event_count": 8,
-          "event_coverage": 0.1,
-          "is_primary": false
-        },
-        {
-          "tag_code": "NO_MATCH",
-          "tag_name_cn": "无合适标签",
-          "event_count": 8,
-          "event_coverage": 0.1,
+          "event_count": 1,
+          "event_coverage": 0.1667,
           "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8375,
-      "reason_confidence_level": "high",
-      "can_deep_dive_reasons": true
+      "coverage_reached": 1.0,
+      "reason_confidence_level": "low",
+      "can_deep_dive_reasons": false
     },
     {
       "country": "US",
       "fasin": "B0BGHGXYJX",
-      "asin": "B0BGHJG2NJ",
+      "asin": "B0D9BMW8FV",
       "window_label": "before",
-      "start_date": "2025-05-22",
-      "end_date": "2025-08-19",
+      "start_date": "2025-10-01",
+      "end_date": "2025-10-30",
       "problem_class": "B",
       "problem_class_label_cn": "高退货问题款",
-      "total_events": 21,
-      "units_returned": 48,
-      "text_coverage": 0.4375,
+      "total_events": 9,
+      "units_returned": 16,
+      "text_coverage": 0.5625,
       "core_reasons": [
         {
           "tag_code": "FIT_COMPAT",
           "tag_name_cn": "尺寸/兼容性不符",
-          "event_count": 18,
-          "event_coverage": 0.8571,
+          "event_count": 4,
+          "event_coverage": 0.4444,
           "is_primary": true
+        },
+        {
+          "tag_code": "DOA_DAMAGED",
+          "tag_name_cn": "损坏到货（DOA/受损）",
+          "event_count": 2,
+          "event_coverage": 0.2222,
+          "is_primary": false
         }
       ],
       "coverage_threshold": 0.8,
-      "coverage_reached": 0.8571,
-      "reason_confidence_level": "medium",
-      "can_deep_dive_reasons": true
+      "coverage_reached": 0.6667,
+      "reason_confidence_level": "low",
+      "can_deep_dive_reasons": false
     }
   ]
 }
